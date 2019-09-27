@@ -1,16 +1,26 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  }
+    {
+        path: 'main',
+        loadChildren: () => import('./modules/pages/tabModule/tabs/tabs.module').then(m => m.TabsPageModule)
+    },
+    {path: '', pathMatch: 'full', redirectTo: 'login'},
+    {path: 'login', loadChildren: './modules/pages/login/login.module#LoginPageModule'},
+    {path: 'articulo', loadChildren: './modules/pages/mensajeria/articulo/articulo.module#ArticuloPageModule'},
+    {path: 'segmento', loadChildren: './modules/pages/mensajeria/segmento/segmento.module#SegmentoPageModule'},
+    {path: 'managment', loadChildren: './modules/pages/notificacion/managment/managment.module#ManagmentPageModule'},
+    {path: 'sector', loadChildren: './modules/pages/persona/sector/sector.module#SectorPageModule'},
+    {path: 'tipo-usuario', loadChildren: './modules/pages/persona/tipo-usuario/tipo-usuario.module#TipoUsuarioPageModule'}
+
 ];
+
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+    ],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
