@@ -1,4 +1,3 @@
-import {Builder} from 'xml2js';
 import {Injectable} from '@angular/core';
 import {ToastController} from '@ionic/angular';
 import {DURATION_TOAST} from './constant';
@@ -25,8 +24,7 @@ export class Util {
 
 
     public toXML = function(json: any) {
-        const builder = new Builder();
-        return builder.buildObject(json);
+        return null;
     };
 
 
