@@ -9,6 +9,7 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RestConectionModule} from './modules/system/generic/rest-conection/rest-conection.module';
+import {PipesModule} from './modules/pipes/pipes.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -16,6 +17,7 @@ import {RestConectionModule} from './modules/system/generic/rest-conection/rest-
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, RestConectionModule],
     providers: [
         StatusBar,
+        PipesModule,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
