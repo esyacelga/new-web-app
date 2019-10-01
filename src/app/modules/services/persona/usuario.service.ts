@@ -4,6 +4,7 @@ import {Storage} from '@ionic/storage';
 import {ExecuteCallProcedureService} from '../../system/generic/service/execute-call-procedure.service';
 import {OBTENER_TIPO_USUARIO_PERSONA_LOGIN} from '../../constantes/ConstanteConsulta';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
+import {CRUD_USUARIO} from '../../constantes/ConstanteTransaccional';
 
 @Injectable({
     providedIn: 'root'
@@ -29,8 +30,6 @@ export class UsuarioService {
         if (data && data.usuario) {
             // @ts-ignore
             data.usuario.playerId = this.playerId;
-            // @ts-ignore
-            console.log(data.usuario);
             // @ts-ignore
             await this.genericService.servicioRestGenericoGet(data.usuario, CRUD_USUARIO, requestOptions);
         }

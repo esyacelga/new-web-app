@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ToastController} from '@ionic/angular';
+import {NavController, ToastController} from '@ionic/angular';
 import {DURATION_TOAST} from './constant';
+import {Payload} from './Payload';
 
 
 @Injectable({
@@ -8,8 +9,15 @@ import {DURATION_TOAST} from './constant';
 })
 export class Util {
 
-    constructor(private notify: ToastController) {
+    constructor(private notify: ToastController, private navCtrl: NavController) {
 
+
+    }
+
+    identificacionPayload(payload: Payload) {
+        if (payload && payload.additionalData && payload.additionalData.ruta) {
+            this.navCtrl.navigateForward(payload.additionalData.ruta);
+        }
 
     }
 

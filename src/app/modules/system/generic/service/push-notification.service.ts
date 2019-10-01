@@ -26,6 +26,7 @@ export class PushNotificationService {
     async notificacionRecibida(notifcacion: OSNotification) {
         await this.cargarMensajes();
         const payload = notifcacion.payload;
+        console.log('Payload Generado', payload);
         const existePush = this.mensajes.find(mensaje =>
             mensaje.notificationID === payload.notificationID);
         if (existePush) {
@@ -33,9 +34,9 @@ export class PushNotificationService {
         }
         this.mensajes.unshift(payload);
         this.pushLitener.emit(payload);
-        console.log('NOTIFICACION A GUARDAR');
         await this.guardarMensajes(this.mensajes);
     }
+
 
     guardarMensajes(lstObj: any) {
         this.svrSorage.setStorageObject('mensajes', lstObj);

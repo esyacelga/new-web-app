@@ -15,9 +15,6 @@ export class StorageAppService {
     loadStorageObject(key: string) {
         const promesa = new Promise((resolve, reject) => {
             if (this.platform.is('cordova')) {
-                console.log('Entro a guardar el objeto', key);
-                console.log('Inicializando storage');
-                console.log('Storage inicializado ');
                 this.storage.get(key).then((val) => {
                     let objRegenrado = null;
                     try {
@@ -46,7 +43,6 @@ export class StorageAppService {
 
     setStorageObject(obj, key) {
         if (this.platform.is('cordova')) {
-            console.log('Entro a guardar el objeto', key);
             this.storage.set(key, obj);
         } else {
             localStorage.setItem(key, JSON.stringify(obj));

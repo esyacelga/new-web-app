@@ -6,13 +6,14 @@ import {RegistroMensajes} from '../../classes/login/RegistroMensajes';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Usuario} from '../../interfaces/interfaces';
 import {UsuarioService} from '../../services/persona/usuario.service';
-import {NavController} from '@ionic/angular';
+import {NavController, Platform} from '@ionic/angular';
 import {StorageAppService} from '../../system/generic/service/storage-app.service';
 import {SectorService} from '../../services/persona/sector.service';
 import {TipoUsuarioPersonaService} from '../../services/persona/tipo-usuario-persona.service';
 import {TipoUsuarioService} from '../../services/persona/tipo-usuario.service';
 import {Util} from '../../system/generic/classes/util';
 import {COLOR_TOAST_DARK} from '../../system/generic/classes/constant';
+import {PushNotificationService} from '../../system/generic/service/push-notification.service';
 
 @Component({
     selector: 'app-login',
@@ -102,6 +103,8 @@ export class LoginPage implements OnInit {
                 private svrUsuario: UsuarioService,
                 private navCtrl: NavController,
                 private svrStorage: StorageAppService,
+                private svtNotificacion: PushNotificationService,
+                private platform: Platform,
                 private svrSector: SectorService, private svrTipoUsuario: TipoUsuarioService,
                 private svtTipoUsuariPersona: TipoUsuarioPersonaService) {
         this.construirFormRegistro();
@@ -143,9 +146,13 @@ export class LoginPage implements OnInit {
         }
         const data = await this.svrUsuario.loginUsuario(this.ingresoForm.value.correo, this.ingresoForm.value.clave);
         if (data) {
+
             // navegar al tabs
             console.error(data);
             this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true});
+            if (this.platform.is('cordova')) {
+                this.svtNotificacion.configuracionInicial();
+            }
             this.svrStorage.setStorageObject(data, 'usuario');
         } else {
             // mostrar alerta de usuario y contraseña no correctos
