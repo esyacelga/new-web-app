@@ -13,11 +13,12 @@ import {Camera} from '@ionic-native/camera/ngx';
 import {FileTransfer} from '@ionic-native/file-transfer/ngx';
 import {OneSignal} from '@ionic-native/onesignal/ngx';
 import {ComponentModule} from './modules/components/component.module';
+import {IonicStorageModule} from '@ionic/storage';
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, RestConectionModule],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, RestConectionModule, IonicStorageModule.forRoot()],
     providers: [
         ComponentModule,
         Camera,
