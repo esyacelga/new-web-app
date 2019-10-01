@@ -1,4 +1,3 @@
-/*
 import {EventEmitter, Injectable} from '@angular/core';
 import {StorageAppService} from './storage-app.service';
 import {OneSignal, OSNotification, OSNotificationPayload} from '@ionic-native/onesignal/ngx';
@@ -13,6 +12,7 @@ export class PushNotificationService {
     pushLitener = new EventEmitter<OSNotificationPayload>(
 
     );
+
     async getMensajes() {
         await this.cargarMensajes();
         return [...this.mensajes];
@@ -28,8 +28,6 @@ export class PushNotificationService {
         const payload = notifcacion.payload;
         const existePush = this.mensajes.find(mensaje =>
             mensaje.notificationID === payload.notificationID);
-
-
         if (existePush) {
             return;
         }
@@ -73,4 +71,4 @@ export class PushNotificationService {
         return this.mensajes;
     }
 }
-*/
+
