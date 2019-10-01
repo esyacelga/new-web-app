@@ -1,13 +1,12 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {StorageAppService} from './storage-app.service';
 import {OneSignal, OSNotification, OSNotificationPayload} from '@ionic-native/onesignal/ngx';
-import {UsuarioService} from '../../../services/persona/usuario.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PushNotificationService {
-
+    playerId: string;
     mensajes: OSNotificationPayload[] = [];
     pushLitener = new EventEmitter<OSNotificationPayload>(
 
@@ -18,7 +17,7 @@ export class PushNotificationService {
         return [...this.mensajes];
     }
 
-    constructor(private oneSignal: OneSignal, private svrSorage: StorageAppService, private srvUser: UsuarioService) {
+    constructor(private oneSignal: OneSignal, private svrSorage: StorageAppService) {
         this.cargarMensajes();
     }
 
@@ -60,7 +59,7 @@ export class PushNotificationService {
         console.log('Inicializando ID');
         this.oneSignal.getIds().then(info => {
             console.log(info);
-            this.srvUser.playerId = info.userId;
+            this.playerId = info.userId;
 
         });
         this.oneSignal.endInit();

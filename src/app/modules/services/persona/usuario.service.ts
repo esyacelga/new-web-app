@@ -5,6 +5,7 @@ import {ExecuteCallProcedureService} from '../../system/generic/service/execute-
 import {OBTENER_TIPO_USUARIO_PERSONA_LOGIN} from '../../constantes/ConstanteConsulta';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
 import {CRUD_USUARIO} from '../../constantes/ConstanteTransaccional';
+import {PushNotificationService} from '../../system/generic/service/push-notification.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,9 +15,10 @@ export class UsuarioService {
     playerId: string = null;
 
     constructor(private genericService: ExecuteCallProcedureService,
+                private svrPush: PushNotificationService,
                 private storage: Storage, private navCtrl: NavController,
     ) {
-
+        this.playerId = this.svrPush.playerId;
     }
 
     async loginUsuario(correo: string, clave: string) {
@@ -40,6 +42,7 @@ export class UsuarioService {
         this.token = token;
         await this.storage.set('token', token);
         await this.validaToken();
+
     }
 
 

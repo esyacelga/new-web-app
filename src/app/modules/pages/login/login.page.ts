@@ -146,9 +146,6 @@ export class LoginPage implements OnInit {
         }
         const data = await this.svrUsuario.loginUsuario(this.ingresoForm.value.correo, this.ingresoForm.value.clave);
         if (data) {
-
-            // navegar al tabs
-            console.error(data);
             this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true});
             if (this.platform.is('cordova')) {
                 this.svtNotificacion.configuracionInicial();
