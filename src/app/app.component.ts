@@ -33,6 +33,9 @@ export class AppComponent {
                 } else {
                     this.navCtrl.navigateRoot('login');
                 }
+                if (this.platform.is('cordova')) {
+                    this.svtNotificacion.configuracionInicial();
+                }
                 this.statusBar.styleDefault();
                 this.splashScreen.hide();
                 if (this.platform.is('cordova')) {

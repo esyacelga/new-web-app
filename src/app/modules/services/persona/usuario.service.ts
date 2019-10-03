@@ -22,7 +22,6 @@ export class UsuarioService {
     }
 
     async loginUsuario(correo: string, clave: string) {
-        console.log(this.playerId);
         const requestOptions = new RequestOptions();
         const usuario = {
             correo, clave
