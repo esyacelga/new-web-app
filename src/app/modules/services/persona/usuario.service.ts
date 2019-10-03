@@ -31,7 +31,7 @@ export class UsuarioService {
         // @ts-ignore
         if (data && data.usuario) {
             // @ts-ignore
-            data.usuario.playerId = this.playerId;
+            data.usuario.playerId = this.svrPush.playerId;
             // @ts-ignore
             await this.genericService.servicioRestGenericoGet(data.usuario, CRUD_USUARIO, requestOptions);
         }

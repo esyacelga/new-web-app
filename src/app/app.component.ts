@@ -30,16 +30,15 @@ export class AppComponent {
                 if (response && response.usuario && response.usuario.clave) {
                     //                    this.usuarioSvc.setAuthenticated(true);
                     this.navCtrl.navigateRoot('main');
-                    console.log('Entrando a Notificaciion......');
-                    if (this.platform.is('cordova')) {
-                        console.log('Entrando a Notificaciion');
-                        this.svtNotificacion.configuracionInicial();
-                    }
                 } else {
                     this.navCtrl.navigateRoot('login');
                 }
                 this.statusBar.styleDefault();
                 this.splashScreen.hide();
+                if (this.platform.is('cordova')) {
+                    console.log('Entrando a Notificaciion');
+                    this.svtNotificacion.configuracionInicial();
+                }
             }, reason => {
                 this.navCtrl.navigateRoot('signin');
             });
