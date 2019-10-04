@@ -1,3 +1,4 @@
+export const OBTENER_PEDIDOS = 'solicitud/obtenerPedidos';
 export const OBTENER_TODOS_SECTOR = 'sector/obtenerTodosSectores';
 export const OBTENER_EVIO_NOTIFICACION = 'notificacion';
 export const OBTENER_TODOS_TIPO_USUARIO = 'tipoUsuario/obtenerTodos';

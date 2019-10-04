@@ -1,0 +1,39 @@
+[
+  {
+    "icon": "hammer",
+    "name": "Tipo usuario",
+    "redirectTo": "/tipo-usuario"
+  },
+  {
+    "icon": "grid",
+    "name": "Sector",
+    "redirectTo": "/sector"
+  },
+  {
+    "icon": "grid",
+    "name": "Tipo Artículo",
+    "redirectTo": "/tipo-articulo"
+  },
+  {
+    "icon": "grid",
+    "name": "Artículo",
+    "redirectTo": "/articulo"
+  },
+  {
+    "icon": "grid",
+    "name": "Segmento",
+    "redirectTo": "/segmento"
+  },
+
+  {
+    "icon": "grid",
+    "name": "Pedidos",
+    "redirectTo": "/managment"
+  },
+  {
+    "icon": "code-working",
+    "name": "Main",
+    "redirectTo": "/"
+  }
+]
+	  

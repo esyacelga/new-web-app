@@ -5,6 +5,7 @@ import {ExecuteCallProcedureService} from './execute-call-procedure.service';
 import {OBTENER_EVIO_NOTIFICACION} from '../../../constantes/ConstanteConsulta';
 import {MensajeOneSignal} from '../classes/MensajeOneSignal';
 import {RequestOptions} from '../classes/RequestOptions';
+import {NavController} from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +22,9 @@ export class PushNotificationService {
         return [...this.mensajes];
     }
 
-    constructor(private genericService: ExecuteCallProcedureService, private oneSignal: OneSignal, private svrSorage: StorageAppService) {
+    constructor(private genericService: ExecuteCallProcedureService,
+                private nav: NavController,
+                private oneSignal: OneSignal, private svrSorage: StorageAppService) {
         this.cargarMensajes();
     }
 
@@ -32,6 +35,14 @@ export class PushNotificationService {
         return data;
     }
 
+
+    reenvioPantalla(payload: OSNotificationPayload) {
+        console.log('Payload pantalla: ', payload);
+        if (payload.additionalData && payload.additionalData.key && payload.additionalData.key === 'ruta') {
+            this.nav.navigateForward(payload.additionalData.valor);
+        }
+
+    }
 
     async notificacionRecibida(notifcacion: OSNotification) {
         await this.cargarMensajes();
@@ -45,6 +56,7 @@ export class PushNotificationService {
         this.mensajes.unshift(payload);
         this.pushLitener.emit(payload);
         await this.guardarMensajes(this.mensajes);
+        this.reenvioPantalla(notifcacion.payload);
     }
 
 

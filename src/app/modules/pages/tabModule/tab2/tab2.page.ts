@@ -17,7 +17,8 @@ export class Tab2Page implements OnInit {
     lstDetalle: SolcitudDetalleModel[] = [];
     sumatoria = 0;
 
-    constructor(private svrSolicitud: SolicitudService, private svrStorage: StorageAppService, private svrNoti: PushNotificationService) {
+    constructor(private svrSolicitud: SolicitudService,
+                private svrStorage: StorageAppService, private svrNoti: PushNotificationService) {
 
     }
 
@@ -29,12 +30,10 @@ export class Tab2Page implements OnInit {
 
 
     async registrarSolicitud() {
-
         const data: ObjetoTipoUsuarioPersona = (await this.svrStorage.loadStorageObject('usuario')) as ObjetoTipoUsuarioPersona;
         const cabeceraSolicitud = new SolcitudCabeceraModel(null, data.usuario._id, 1, this.lstDetalle);
         await this.svrSolicitud.registarSolicitud(cabeceraSolicitud);
         const mensaje: MensajeOneSignal = new MensajeOneSignal();
-
         mensaje.tittuloNotificacion = 'Nuevo pedido';
         let nombre = '';
         if (!data.persona) {
@@ -46,9 +45,10 @@ export class Tab2Page implements OnInit {
         mensaje.detalleNotificacion = 'El usuario: ' + nombre + ' ha generado una nueva solicitud';
         mensaje.grupoUsuarios = GRUPO_CLIENTE;
         mensaje.key = 'ruta';
-        mensaje.valor = 'valor-ruta';
+        mensaje.valor = 'managment';
+        // this.nvr.navigateForward('managment');
         await this.svrNoti.enviarNotificacion(mensaje, 'Su pedido ha sido notificada');
-        // this.eliminarLista();
+        this.eliminarLista();
 
     }
 
