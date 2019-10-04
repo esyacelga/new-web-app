@@ -3,6 +3,8 @@ export const URL_SERVICIOS = 'http://localhost:3000';
 
 export const FORMATO_FECHA = 'dd/MM/yyyy';
 export const DELIMITADOR_FECHA_IONIC = '-';
+export const GRUPO_CLIENTE = 'CLIENTE';
+export const GRUPO_ADMINISTRADOR = 'ADMINISTRADOR';
 
 export const SUCCESS_MESSAGE = 'Proceso ejecutado exitosamente';
 export const ERROR_MESSAGE = 'Hubo un problema en la aplicación, por favor espere, estamos solucionando este problema';

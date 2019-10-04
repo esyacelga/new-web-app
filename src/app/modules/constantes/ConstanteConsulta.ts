@@ -1,4 +1,5 @@
 export const OBTENER_TODOS_SECTOR = 'sector/obtenerTodosSectores';
+export const OBTENER_EVIO_NOTIFICACION = 'notificacion';
 export const OBTENER_TODOS_TIPO_USUARIO = 'tipoUsuario/obtenerTodos';
 export const OBTENER_TIPO_USUARIO = 'tipoUsuario/ObtenerPorCampoValor';
 export const OBTENER_TIPO_USUARIO_PERSONA_LOGIN = 'tipoUsuarioPersona/BusquedaPersonaClave';

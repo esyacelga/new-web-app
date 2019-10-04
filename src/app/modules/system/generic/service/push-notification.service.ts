@@ -1,6 +1,10 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {StorageAppService} from './storage-app.service';
 import {OneSignal, OSNotification, OSNotificationPayload} from '@ionic-native/onesignal/ngx';
+import {ExecuteCallProcedureService} from './execute-call-procedure.service';
+import {OBTENER_EVIO_NOTIFICACION} from '../../../constantes/ConstanteConsulta';
+import {MensajeOneSignal} from '../classes/MensajeOneSignal';
+import {RequestOptions} from '../classes/RequestOptions';
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +21,15 @@ export class PushNotificationService {
         return [...this.mensajes];
     }
 
-    constructor(private oneSignal: OneSignal, private svrSorage: StorageAppService) {
+    constructor(private genericService: ExecuteCallProcedureService, private oneSignal: OneSignal, private svrSorage: StorageAppService) {
         this.cargarMensajes();
+    }
+
+    async enviarNotificacion(mensaje: MensajeOneSignal, mensajeExito) {
+        const options = new RequestOptions();
+        options.successMessaje = mensajeExito;
+        const data = await this.genericService.servicioRestGenericoGet(mensaje, OBTENER_EVIO_NOTIFICACION, options);
+        return data;
     }
 
 
