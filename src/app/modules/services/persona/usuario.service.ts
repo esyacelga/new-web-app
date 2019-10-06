@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {Storage} from '@ionic/storage';
 import {ExecuteCallProcedureService} from '../../system/generic/service/execute-call-procedure.service';
-import {OBTENER_TIPO_USUARIO_PERSONA_LOGIN} from '../../constantes/ConstanteConsulta';
+import {OBTENER_TIPO_USUARIO_PERSONA_LOGIN, OBTENER_TODOS_USUARIOS} from '../../constantes/ConstanteConsulta';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
 import {CRUD_USUARIO} from '../../constantes/ConstanteTransaccional';
 import {PushNotificationService} from '../../system/generic/service/push-notification.service';
@@ -19,6 +19,12 @@ export class UsuarioService {
                 private storage: Storage, private navCtrl: NavController,
     ) {
         this.playerId = this.svrPush.playerId;
+    }
+
+    async obtenerTodos() {
+        const requestOptions = new RequestOptions();
+        const lstUsuarios = await this.genericService.servicioRestGenericoGet({}, OBTENER_TODOS_USUARIOS, requestOptions);
+        return lstUsuarios;
     }
 
     async loginUsuario(correo: string, clave: string) {

@@ -1,9 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>managment</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>managment</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-row>
+        <ion-list>
+            <ion-item *ngFor="let item of lstPedidoRemen">
+                <ion-badge color="secondary">{{item.usuario}}</ion-badge>
+                <ion-label class="ion-text-right">{{item.total}}</ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-row>
 </ion-content>
