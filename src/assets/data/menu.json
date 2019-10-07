@@ -33,7 +33,7 @@
   {
     "icon": "code-working",
     "name": "Main",
-    "redirectTo": "/"
+    "redirectTo": "/main"
   }
 ]
 	  

@@ -1,4 +1,5 @@
 export class RequestOptions {
+    mostrar: number;
     loadingMessage: string;
     successMessaje: string;
     errorMessage: string;

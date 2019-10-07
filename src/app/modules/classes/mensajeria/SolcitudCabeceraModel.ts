@@ -4,7 +4,7 @@ export class SolcitudCabeceraModel {
     estado: number;
     lstSolcitudDetalle: SolcitudDetalleModel[];
 
-    constructor(id: string, usuario: string, estado: number, lstSolcitudDetalle: SolcitudDetalleModel[]) {
+    constructor(id: string, usuario: string, estado: number, lstSolcitudDetalle?: SolcitudDetalleModel[]) {
         this._id = id;
         this.usuario = usuario;
         this.estado = estado;

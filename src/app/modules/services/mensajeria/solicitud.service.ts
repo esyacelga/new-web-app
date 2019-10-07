@@ -4,7 +4,7 @@ import {StorageAppService} from '../../system/generic/service/storage-app.servic
 import {SolcitudCabeceraModel, SolcitudDetalleModel} from '../../classes/mensajeria/SolcitudCabeceraModel';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
 import {COLOR_TOAST_SUCCESS} from '../../system/generic/classes/constant';
-import {CRUD_SOLICITUD} from '../../constantes/ConstanteTransaccional';
+import {CRUD_ACTUALIZAR_SOLICITUD, CRUD_SOLICITUD} from '../../constantes/ConstanteTransaccional';
 import {Articulo} from '../../classes/mensajeria/Articulo';
 import {OBTENER_PEDIDOS} from '../../constantes/ConstanteConsulta';
 import {Pedido} from '../../classes/mensajeria/Pedido';
@@ -18,6 +18,12 @@ export class SolicitudService {
 
     constructor(private genericService: ExecuteCallProcedureService, private svrStorage: StorageAppService) {
         this.getDetalleSolicitud();
+    }
+
+    async actualizarSolicitud(solicitud: SolcitudCabeceraModel) {
+        const requestOptions = new RequestOptions();
+        const data = await this.genericService.servicioRestGenericoPost(solicitud, CRUD_ACTUALIZAR_SOLICITUD, requestOptions) as SolcitudCabeceraModel;
+        return data;
     }
 
     async registarSolicitud(solicitud: SolcitudCabeceraModel) {

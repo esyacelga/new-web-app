@@ -18,6 +18,7 @@ export class ModeloTipoUsuarioPersona {
 export class ModeloUsuario {
     _id: string;
     playerId: string;
+    avatar: string;
 }
 
 

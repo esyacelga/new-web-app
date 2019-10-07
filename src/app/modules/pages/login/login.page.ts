@@ -12,7 +12,7 @@ import {SectorService} from '../../services/persona/sector.service';
 import {TipoUsuarioPersonaService} from '../../services/persona/tipo-usuario-persona.service';
 import {TipoUsuarioService} from '../../services/persona/tipo-usuario.service';
 import {Util} from '../../system/generic/classes/util';
-import {COLOR_TOAST_DARK} from '../../system/generic/classes/constant';
+import {COLOR_TOAST_DARK, COLOR_TOAST_WARNING} from '../../system/generic/classes/constant';
 import {PushNotificationService} from '../../system/generic/service/push-notification.service';
 
 @Component({
@@ -153,7 +153,7 @@ export class LoginPage implements OnInit {
             this.svrStorage.setStorageObject(data, 'usuario');
         } else {
             // mostrar alerta de usuario y contraseña no correctos
-            this.util.presentToast('Usuario y contraseña no son correctos.', COLOR_TOAST_DARK);
+            this.util.presentToast('Usuario y contraseña no son correctos.', COLOR_TOAST_WARNING);
         }
     }
 
@@ -166,7 +166,7 @@ export class LoginPage implements OnInit {
             const data = await this.svtTipoUsuariPersona.registar(usuarioApp);
             this.mostrarLogin();
         } else {
-            this.util.presentToast('Por favor ingrese la información solcitada', COLOR_TOAST_DARK);
+            this.util.presentToast('Por favor ingrese la información solicitada', COLOR_TOAST_DARK);
         }
     }
 

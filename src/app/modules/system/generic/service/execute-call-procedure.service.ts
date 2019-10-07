@@ -195,16 +195,16 @@ export class ExecuteCallProcedureService {
                     }
                     resolve(obj);
 
-                }, async error => {
-                    console.log(error);
+                }, async httpError => {
+                    console.error(httpError);
                     console.log(urlRestService);
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
-                    if (error && error.errors && error.errors.errors) {
-                        this.presentToast(error.errors.errors.message, COLOR_TOAST_ERROR);
+                    if (httpError !== undefined && httpError.error !== undefined && httpError.error.errors !== undefined) {
+                        this.presentToast(httpError.error.errors.error, COLOR_TOAST_ERROR);
                     } else {
                         this.presentToast(messages.errorMessage, COLOR_TOAST_ERROR);
                     }
-                    reject(error);
+                    reject(httpError.error.errors);
                 });
             } else {
                 this.restConnection.genericPutRestFull(genericObject, urlRestService).subscribe(async resp => {

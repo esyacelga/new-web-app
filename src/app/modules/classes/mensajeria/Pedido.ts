@@ -1,9 +1,12 @@
+import {ModeloUsuario} from '../persona/TipoUsuarioPersona';
+
 export class Pedido {
     _id: string = '';
     estado: number = 0;
     solicitudDetalle: PedidoDetalle[] = [];
     usuario: string = '';
     tipoUsuarioPerona: TipoUsuarioPerona = new TipoUsuarioPerona();
+    user: ModeloUsuario = new ModeloUsuario();
 }
 
 
@@ -24,6 +27,7 @@ export class Artic {
 export class TipoUsuarioPerona {
     _id: string = '';
     persona: Persona = new Persona();
+    usuario: ModeloUsuario = new ModeloUsuario();
 }
 
 export class Persona {
@@ -35,22 +39,19 @@ export class Persona {
 export class PedidoResumen {
     pedido: Pedido;
     usuario: string;
-    total: number;
+    total = 0;
 
 
     constructor(pedido: Pedido) {
         this.pedido = pedido;
-        this.obtenerTotal(pedido.solicitudDetalle);
+        this.transform(pedido.solicitudDetalle);
     }
 
-    obtenerTotal(lstDetalle: PedidoDetalle[]) {
-        let totalItem = 0;
-        for (const item of lstDetalle) {
-            const valorUnitario = item.unidadCosto;
-            const cantidad = item.cantidad;
-            totalItem = (valorUnitario * cantidad) + totalItem;
+
+    transform(lstDetalle: PedidoDetalle[]) {
+        for (const entry of lstDetalle) {
+            this.total = (entry.cantidad + entry.unidadCosto) + this.total;
         }
-        this.total = totalItem;
     }
 
 }
