@@ -10,6 +10,7 @@ import {SolcitudCabeceraModel} from '../../../classes/mensajeria/SolcitudCabecer
     styleUrls: ['./managment.page.scss'],
 })
 export class ManagmentPage implements OnInit {
+    pedido: PedidoResumen = new PedidoResumen(null);
     contenedor: PedidoResumen;
     lstPedido: Pedido[] = [];
     lstPedidoRemen: PedidoResumen[] = [];

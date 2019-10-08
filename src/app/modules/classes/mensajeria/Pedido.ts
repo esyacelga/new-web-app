@@ -44,7 +44,9 @@ export class PedidoResumen {
 
     constructor(pedido: Pedido) {
         this.pedido = pedido;
-        this.transform(pedido.solicitudDetalle);
+        if (pedido !== null) {
+            this.transform(pedido.solicitudDetalle);
+        }
     }
 
 
