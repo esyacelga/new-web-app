@@ -159,6 +159,10 @@ export class LoginPage implements OnInit {
 
 
     async registerNewUser() {
+        //Selecciiónd de avatar por defecto
+        if (this.registerUser.avatar === '' || this.registerUser.avatar === null) {
+            this.registerUser.avatar = 'av-1.png';
+        }
         if (this.loginForm.status === 'VALID') {
             const usuarioApp = this.loginForm.value;
             usuarioApp.tipoUsuario = this.objTipoUsuario._id;

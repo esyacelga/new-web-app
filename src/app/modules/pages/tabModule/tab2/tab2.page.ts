@@ -56,7 +56,7 @@ export class Tab2Page implements OnInit {
     transform(lstDetalle: SolcitudDetalleModel[]) {
         this.sumatoria = 0;
         for (const entry of lstDetalle) {
-            this.sumatoria = (entry.cantidad + entry.unidadCosto) + this.sumatoria;
+            this.sumatoria = (entry.cantidad * entry.unidadCosto) + this.sumatoria;
         }
         // @ts-ignore
         this.sumatoria = this.sumatoria.toFixed(2);

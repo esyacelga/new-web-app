@@ -6,6 +6,7 @@ import {FilterPipe} from './filter.pipe';
 import {FiltroSegmentoPipe} from './filtro-segmento.pipe';
 import {SegmentoArticuloPipe} from './segmento-articulo.pipe';
 import {SumatoriaArticulosPipe} from './sumatoria-articulos.pipe';
+import {FiltroPedidoPipe} from './filtro-pedido.pipe';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import {SumatoriaArticulosPipe} from './sumatoria-articulos.pipe';
         FiltroSegmentoPipe,
         SegmentoArticuloPipe,
         SumatoriaArticulosPipe,
+        FiltroPedidoPipe,
     ],
     exports: [
         ImagenPipe,
@@ -24,6 +26,7 @@ import {SumatoriaArticulosPipe} from './sumatoria-articulos.pipe';
         ImageSanitizerPipe,
         FiltroSegmentoPipe,
         SegmentoArticuloPipe,
+        FiltroPedidoPipe,
         SumatoriaArticulosPipe
     ]
 })
