@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark">
     <ion-title>Tipo articulo</ion-title>
     <ion-button ion-button color="primary"
                 slot="start"
@@ -18,10 +18,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list *ngIf="objTipoArticulo"
-  >
-    <ion-item>
+<ion-content color="dark">
+  <ion-list *ngIf="objTipoArticulo" color="dark">
+    <ion-item color="dark">
       <ion-label position="floating">Nombre</ion-label>
       <ion-input class="ion-text-uppercase" [(ngModel)]="objTipoArticulo.nombre"></ion-input>
     </ion-item>
@@ -38,7 +37,7 @@
   <ion-list *ngIf="!objTipoArticulo"
   >
     <ion-item-sliding *ngFor="let item of lstTipoArticulos; let i = index">
-      <ion-item>
+      <ion-item color="dark">
         <ion-label>{{item.nombre | uppercase}}</ion-label>
       </ion-item>
       <ion-item-options side="end">

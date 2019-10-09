@@ -142,9 +142,16 @@ export class ExecuteCallProcedureService {
             if (options.toastColor === undefined) {
                 options.toastColor = COLOR_TOAST_PRIMARY;
             }
-            await this.loading.present('messagesService.loadMessagesOverview', 'Procesando...');
+            if (options.mostrar === undefined) {
+                options.mostrar = 1;
+            }
+            if (options.mostrar === 1) {
+                await this.loading.present('messagesService.loadMessagesOverview', 'Procesando...');
+            }
             this.restConnection.genericGetRestFull(genericObject, urlRestService).subscribe(async resp => {
-                this.loading.dismiss('messagesService.loadMessagesOverview');
+                if (options.mostrar === 1) {
+                    this.loading.dismiss('messagesService.loadMessagesOverview');
+                }
                 let obj = null;
                 if (options.responseType === 1) {
                     obj = resp.items;
@@ -153,10 +160,14 @@ export class ExecuteCallProcedureService {
                 }
                 resolve(obj);
             }, async error => {
-                await this.loading.dismiss('messagesService.loadMessagesOverview');
+                if (options.mostrar === 1) {
+                    await this.loading.dismiss('messagesService.loadMessagesOverview');
+                }
                 console.log(error);
                 console.log(urlRestService);
-                this.presentToast(options.errorMessage, COLOR_TOAST_ERROR);
+                if (options.mostrar === 1) {
+                    this.presentToast(options.errorMessage, COLOR_TOAST_ERROR);
+                }
                 reject(error);
             });
         });

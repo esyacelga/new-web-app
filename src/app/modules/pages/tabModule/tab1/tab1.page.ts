@@ -19,8 +19,7 @@ export class Tab1Page implements OnInit {
     }
 
     async ngOnInit() {
-        // @ts-ignore
-        this.lstTipoArticulo = await this.svcTipoArticulo.obtenerTipoArticulos();
+        this.lstTipoArticulo = (await this.svcTipoArticulo.obtenerTipoArticulos()) as [];
     }
 
     ionViewWillEnter() {

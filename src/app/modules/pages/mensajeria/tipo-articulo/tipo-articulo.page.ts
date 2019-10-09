@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TipoArticuloClientService} from '../../services/mensajeria/tipo-articulo-client.service';
-import {TipoArticulo} from '../../classes/mensajeria/tipo-articulo';
+import {TipoArticulo} from '../../../classes/mensajeria/tipo-articulo';
+import {TipoArticuloClientService} from '../../../services/mensajeria/tipo-articulo-client.service';
 
 @Component({
   selector: 'app-tipo-articulo',

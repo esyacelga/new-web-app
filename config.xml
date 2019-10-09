@@ -3,7 +3,7 @@
     <name>BlackCat</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -107,4 +107,19 @@
     <plugin name="cordova-plugin-telerik-imagepicker" spec="^2.3.3" />
     <allow-navigation href="http://localhost:8100" sessionid="8c3fc73c" />
     <plugin name="cordova-plugin-camera" spec="^4.1.0" />
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>Necesito tu autorización para saber tu ubicación</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+        <string>Se necesita acceso para tomar fotos</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
+        <string>Se necesita acceso a la libreria </string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>Se necesita acceso para obtener ubicación</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryAddUsageDescription">
+        <string>Se necesita acceso para guardar las fotos</string>
+    </edit-config>
 </widget>
