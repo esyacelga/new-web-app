@@ -30,7 +30,6 @@ export class AppComponent {
             this.svrStorage.loadStorageObject('usuario').then((response) => {
                 // @ts-ignore
                 if (response && response.usuario && response.usuario.clave) {
-                    //                    this.usuarioSvc.setAuthenticated(true);
                     this.navCtrl.navigateRoot('main');
                 } else {
                     this.navCtrl.navigateRoot('login');

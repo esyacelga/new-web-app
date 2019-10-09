@@ -1,19 +1,21 @@
 <ion-header>
     <ion-toolbar color="dark">
-        <ion-title>ARTICULOS</ion-title>
-        <ion-button ion-button color="dark"
+        <ion-title  *ngIf="!articulo" >Articulos</ion-title>
+        <ion-button ion-button color="primary"
                     slot="start"
                     *ngIf="!articulo"
-                    (click)="crearNuevo()">NUEVO
+                    (click)="crearNuevo()">Nuevo
         </ion-button>
         <ion-button ion-button color="primary" slot="start"
                     *ngIf="articulo"
-                    (click)="articulo=null">CANCELAR
+                    (click)="articulo=null">Cancelar
         </ion-button>
-        <ion-button ion-button color="primary"
+        <ion-button ion-button color="success"
                     slot="end"
                     *ngIf="articulo"
-                    (click)="registrarNuevo(articulo)">GUARDAR
+                    (click)="registrarNuevo(articulo)">Guardar
+
+
         </ion-button>
     </ion-toolbar>
 </ion-header>
@@ -24,7 +26,6 @@
             <ion-item-divider color="">
                 <ion-label><h5>{{item.descripcion}}</h5></ion-label>
             </ion-item-divider>
-
             <ion-item-sliding *ngFor="let data of lstArticulo | filter:{articuloSegmento: item._id}; let i = index">
                 <ion-item color="dark">
                     <ion-label>{{data.descripcion | uppercase}}</ion-label>
@@ -41,26 +42,20 @@
         </ion-item-group>
     </ion-list>
 
-    <!--<app-mapa [coords]="coords"></app-mapa>-->
     <ion-list *ngIf="articulo">
-
-        <ion-item>
+        <ion-item color="dark">
             <ion-label position="floating">Descripcion</ion-label>
             <ion-input class="ion-text-uppercase" [(ngModel)]="articulo.descripcion"></ion-input>
         </ion-item>
-
-        <ion-item>
+        <ion-item color="dark">
             <ion-label position="floating">Unidad Almacenada</ion-label>
             <ion-input type="number" class="ion-text-uppercase" [(ngModel)]="articulo.unidadAlmacenada"></ion-input>
-        </ion-item>
-
-        <ion-item>
+        </ion-item >
+        <ion-item color="dark">
             <ion-label position="floating">Costo por unidad</ion-label>
             <ion-input type="number" class="ion-text-uppercase" [(ngModel)]="articulo.unidadCosto"></ion-input>
         </ion-item>
-
-
-        <ion-item>
+        <ion-item color="dark">
             <ion-label>Tipo Artículo</ion-label>
             <ion-select [(ngModel)]="articulo.articuloSegmento.tipoArticulo"
                         okText="Okay" cancelText="Dismiss">
@@ -69,7 +64,7 @@
             </ion-select>
         </ion-item>
 
-        <ion-item>
+        <ion-item color="dark">
             <ion-label>Segmento</ion-label>
             <ion-select [(ngModel)]="articulo.articuloSegmento._id"
                         okText="Okay" cancelText="Dismiss">
@@ -77,14 +72,8 @@
                         *ngFor="let item  of lstSegmento | filtroSegmento:{tipoArticulo: articulo.articuloSegmento.tipoArticulo}; "
                         value="{{item._id}}">{{item.descripcion|uppercase}}</ion-select-option>
             </ion-select>
+
         </ion-item>
-
-
-        <!--<ion-item>
-            <ion-label>Posicion actual</ion-label>
-            <ion-spinner *ngIf="cargandoGeo" name="lines-small"></ion-spinner>
-            <ion-toggle slot="end" [(ngModel)]="articulo.posicion" (ionChange)="getGeo()"></ion-toggle>
-        </ion-item>-->
 
         <ion-row>
             <ion-col size="6">
@@ -106,37 +95,22 @@
                 </ion-button>
             </ion-col>
         </ion-row>
-
-
-
         <ion-col size="3" *ngIf="!articulo.imagenEditada">
             ACTUAL
             <ion-card>
+
                 <ion-slide class="image-slide"
                            [style]=" (articulo.portada | imagen: articulo.articuloSegmento._id ) | domSanitizer ">
                 </ion-slide>
+                <ion-label>{{articulo.portada}}</ion-label>
             </ion-card>
         </ion-col>
-
-
-
         <ion-col size="3" *ngIf="articulo.imagenEditada">
             EDITADO
             <ion-card>
                 <img [src]="articulo.imagenEditada | imageSanitizer">
             </ion-card>
         </ion-col>
-
-
-        <!--<ion-row>
-            <ion-col size="3" *ngFor="let image of tempImages">
-                <ion-card>
-                    <img [src]="image | imageSanitizer">
-                </ion-card>
-            </ion-col>
-        </ion-row>-->
-
     </ion-list>
-
 </ion-content>
 
