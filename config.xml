@@ -103,8 +103,8 @@
     <plugin name="cordova-sqlite-storage" spec="^3.4.0" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.7.1" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.2" />
-    <plugin name="cordova-plugin-camera" spec="^4.1.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.2" />
     <plugin name="cordova-plugin-telerik-imagepicker" spec="^2.3.3" />
     <allow-navigation href="http://localhost:8100" sessionid="8c3fc73c" />
+    <plugin name="cordova-plugin-camera" spec="^4.1.0" />
 </widget>

@@ -52,7 +52,7 @@ export class PedidoResumen {
 
     transform(lstDetalle: PedidoDetalle[]) {
         for (const entry of lstDetalle) {
-            this.total = (entry.cantidad + entry.unidadCosto) + this.total;
+            this.total = (entry.cantidad * entry.unidadCosto) + this.total;
         }
     }
 

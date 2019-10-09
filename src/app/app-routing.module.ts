@@ -11,6 +11,7 @@ const routes: Routes = [
     {path: 'articulo', loadChildren: './modules/pages/mensajeria/articulo/articulo.module#ArticuloPageModule'},
     {path: 'segmento', loadChildren: './modules/pages/mensajeria/segmento/segmento.module#SegmentoPageModule'},
     {path: 'managment', loadChildren: './modules/pages/notificacion/managment/managment.module#ManagmentPageModule'},
+    {path: 'tipo-articulo', loadChildren: './modules/pages/mensajeria/tipo-articulo/tipo-articulo.module#TipoArticuloPageModule'},
     {path: 'sector', loadChildren: './modules/pages/persona/sector/sector.module#SectorPageModule'},
     {path: 'tipo-usuario', loadChildren: './modules/pages/persona/tipo-usuario/tipo-usuario.module#TipoUsuarioPageModule'}
 

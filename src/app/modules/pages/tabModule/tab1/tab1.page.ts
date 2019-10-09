@@ -23,6 +23,10 @@ export class Tab1Page implements OnInit {
         this.lstTipoArticulo = await this.svcTipoArticulo.obtenerTipoArticulos();
     }
 
+    ionViewWillEnter() {
+        this.tipoArticulo = null;
+    }
+
     selecionar(item: TipoArticulo) {
         this.tipoArticulo = item;
     }

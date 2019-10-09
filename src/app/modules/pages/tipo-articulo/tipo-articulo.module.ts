@@ -5,27 +5,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ArticuloPage } from './articulo.page';
-import {PipesModule} from '../../../pipes/pipes.module';
-import {ComponentModule} from '../../../components/component.module';
+import { TipoArticuloPage } from './tipo-articulo.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ArticuloPage
+    component: TipoArticuloPage
   }
 ];
 
 @NgModule({
   imports: [
-    PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentModule,
-    PipesModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ArticuloPage]
+  declarations: [TipoArticuloPage]
 })
-export class ArticuloPageModule {}
+export class TipoArticuloPageModule {}

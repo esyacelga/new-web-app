@@ -12,6 +12,8 @@ import {PushNotificationService} from './modules/system/generic/service/push-not
     styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+    usuario: any;
+
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
