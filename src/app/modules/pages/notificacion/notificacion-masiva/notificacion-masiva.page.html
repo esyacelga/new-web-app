@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Notificación</ion-title>
+    <ion-button ion-button color="primary"
+                slot="start"
+                *ngIf="!objNotificacion"
+                (click)="crearNuevo()">NUEVO
+    </ion-button>
+    <ion-button ion-button color="primary" slot="start"
+                *ngIf="objNotificacion"
+                (click)="objNotificacion=null">CANCELAR
+    </ion-button>
+    <ion-button ion-button color="primary"
+                slot="end"
+                *ngIf="objNotificacion"
+                (click)="registrar(objNotificacion)">GUARDAR
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <ion-list *ngIf="objNotificacion"
+  >
+    <ion-item >
+      <ion-label position="floating">Titulo</ion-label>
+      <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.titulo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Mensaje Titulo</ion-label>
+      <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.mensajeTitulo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Codigo</ion-label>
+      <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.key"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contenido Mensaje</ion-label>
+      <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.keyPayload"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngIf="!objNotificacion"
+  >
+    <ion-item-sliding *ngFor="let item of lstTipoUsuario; let i = index">
+      <ion-item href="#">
+        <ion-label>
+          <h2>HubStruck Notifications</h2>
+          <p>A new message in your network</p>
+          <p>Oceanic Next has joined your network</p>
+        </ion-label>
+        <ion-note slot="end">
+          10:45 AM
+        </ion-note>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="tertiary" (click)="objNotificacion=item">
+          <ion-icon slot="icon-only" ios="ios-list-box" md="md-list-box"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="eliminar(item)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

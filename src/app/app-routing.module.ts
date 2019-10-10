@@ -14,7 +14,11 @@ const routes: Routes = [
     {path: 'sector', loadChildren: './modules/pages/persona/sector/sector.module#SectorPageModule'},
     {path: 'tipo-usuario', loadChildren: './modules/pages/persona/tipo-usuario/tipo-usuario.module#TipoUsuarioPageModule'},
     {path: 'tipo-articulo', loadChildren: './modules/pages/mensajeria/tipo-articulo/tipo-articulo.module#TipoArticuloPageModule'},
-    {path: 'black', loadChildren: './modules/pages/login/black/black.module#BlackPageModule'}
+    {path: 'black', loadChildren: './modules/pages/login/black/black.module#BlackPageModule'},
+    {
+        path: 'notificacion-masiva',
+        loadChildren: './modules/pages/notificacion/notificacion-masiva/notificacion-masiva.module#NotificacionMasivaPageModule'
+    }
 
 
 ];

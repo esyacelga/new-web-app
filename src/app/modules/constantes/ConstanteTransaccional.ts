@@ -1,4 +1,5 @@
 export const CRUD_SECTOR = 'sector';
+export const CRUD_NOTIFICACION = 'notificacion';
 export const CRUD_SEGMENTO = 'articuloSegmento';
 export const CRUD_SOLICITUD = 'solicitud'
 export const CRUD_ACTUALIZAR_SOLICITUD = 'solicitud/actualizar'
