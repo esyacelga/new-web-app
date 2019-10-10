@@ -233,7 +233,6 @@ export class ExecuteCallProcedureService {
                 this.restConnection.genericPutRestFull(genericObject, urlRestService).subscribe(async resp => {
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
                     this.presentToast(messages.successMessaje, messages.toastColor);
-
                     let obj = null;
                     if (messages.responseType === 1) {
                         obj = resp;
@@ -241,7 +240,6 @@ export class ExecuteCallProcedureService {
                         obj = resp.objeto;
                     }
                     resolve(obj);
-
                 }, async error => {
                     const mensaje = this.lectorError(error.error.errors.errors);
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
