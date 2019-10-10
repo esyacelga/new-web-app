@@ -7,6 +7,8 @@ import {ArticuloService} from '../../../services/mensajeria/articulo.service';
 import {SegmentoService} from '../../../services/mensajeria/segmento.service';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
+import {Util} from '../../../system/generic/classes/util';
+import {COLOR_TOAST_WARNING} from '../../../system/generic/classes/constant';
 
 @Component({
     selector: 'app-articulo',
@@ -23,6 +25,7 @@ export class ArticuloPage implements OnInit {
     constructor(private srvTipoArticulo: TipoArticuloClientService, private svcSegmento: SegmentoService,
                 private svcArticulo: ArticuloService,
                 private geolocation: Geolocation,
+                private util: Util,
                 private camera: Camera
     ) {
     }
@@ -90,6 +93,10 @@ export class ArticuloPage implements OnInit {
     async registrarNuevo(objGuardar) {
         // @ts-ignore}
         objGuardar.estado = 1;
+        if (objGuardar.articuloSegmento === undefined || objGuardar.articuloSegmento._id === undefined) {
+            this.util.presentToast('Debe seleccionar un segmento y tipo articulo ', COLOR_TOAST_WARNING);
+            return;
+        }
         objGuardar.articuloSegmento = objGuardar.articuloSegmento._id;
         await this.svcArticulo.registarArticulo(objGuardar);
         await this.obtenerArticuloTodos();

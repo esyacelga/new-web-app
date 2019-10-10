@@ -174,6 +174,19 @@ export class ExecuteCallProcedureService {
         return promesa;
     }
 
+
+    public lectorError(objError) {
+        let mensajes = '';
+        for (const aProperty in objError) {
+            if (objError.hasOwnProperty(aProperty)) {
+                const data = objError[aProperty];
+                mensajes = '<p>' + data.message + '</p></br>' + mensajes;
+            }
+        }
+        return mensajes;
+
+    }
+
     public servicioRestGenericoPost = function(genericObject: any, urlRestService: string, messages?: RequestOptions) {
         return new Promise(async (resolve, reject) => {
             if (!messages) {
@@ -207,13 +220,12 @@ export class ExecuteCallProcedureService {
                     resolve(obj);
 
                 }, async httpError => {
-                    console.error(httpError);
-                    console.log(urlRestService);
+                    const mensaje = this.lectorError(httpError.error.errors.errors);
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
-                    if (httpError !== undefined && httpError.error !== undefined && httpError.error.errors !== undefined) {
+                    if (httpError !== undefined && httpError.error !== undefined && httpError.error.errors !== undefined && mensaje === '') {
                         this.presentToast(httpError.error.errors.error, COLOR_TOAST_ERROR);
                     } else {
-                        this.presentToast(messages.errorMessage, COLOR_TOAST_ERROR);
+                        this.presentToast(mensaje, COLOR_TOAST_ERROR);
                     }
                     reject(httpError.error.errors);
                 });
@@ -231,13 +243,12 @@ export class ExecuteCallProcedureService {
                     resolve(obj);
 
                 }, async error => {
-                    console.log(error);
-                    console.log(urlRestService);
+                    const mensaje = this.lectorError(error.error.errors.errors);
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
-                    if (error && error.errors && error.errors.errors) {
+                    if (error && error.errors && error.errors.errors && mensaje === '') {
                         this.presentToast(error.errors.errors.message, COLOR_TOAST_ERROR);
                     } else {
-                        this.presentToast(messages.errorMessage, COLOR_TOAST_ERROR);
+                        this.presentToast(mensaje, COLOR_TOAST_ERROR);
                     }
                     reject(error);
                 });
