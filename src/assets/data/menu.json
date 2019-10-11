@@ -24,6 +24,11 @@
     "name": "Segmento",
     "redirectTo": "/segmento"
   },
+  {
+    "icon": "grid",
+    "name": "Notificador",
+    "redirectTo": "/notificacion-masiva"
+  },
 
   {
     "icon": "grid",

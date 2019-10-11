@@ -19,15 +19,29 @@ export class NotificacionMasivaPage implements OnInit {
 
     async ngOnInit() {
         this.lstTipoUsuario = (await this.svtTipoUsuario.listarTodos()) as TipoUsuario[];
+        this.lstNotificacionModel = (await this.svrNotificacion.obtenerTodos()) as NotificacionModel[];
+        console.log(this.lstNotificacionModel);
     }
 
-    async crearNuevo(notificacion: NotificacionModel) {
+    async crearNuevo() {
+        this.objNotificacion = new NotificacionModel();
+    }
+
+    async registrar(notificacion: NotificacionModel) {
         await this.svrNotificacion.registar(notificacion);
+        this.objNotificacion = undefined;
     }
 
-    async obtenerTodos(notificacion: NotificacionModel) {
+    async eliminar(notificacion: NotificacionModel) {
+        notificacion.estado = 0;
+        await this.svrNotificacion.actualizar(notificacion);
         this.lstNotificacionModel = (await this.svrNotificacion.obtenerTodos()) as NotificacionModel[];
     }
 
+    async notificar(notificacion: NotificacionModel) {
+        notificacion.estado = 2;
+        await this.svrNotificacion.actualizar(notificacion);
+        this.objNotificacion = undefined;
+    }
 
 }
