@@ -22,20 +22,20 @@
     <ion-list *ngIf="objNotificacion">
         <ion-item color="dark">
             <ion-label position="floating">Titulo</ion-label>
-            <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.titulo"></ion-input>
+            <ion-input  [(ngModel)]="objNotificacion.titulo"></ion-input>
         </ion-item>
         <ion-item color="dark">
             <ion-label position="floating">Mensaje Titulo</ion-label>
-            <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.mensajeTitulo"></ion-input>
+            <ion-input  [(ngModel)]="objNotificacion.mensajeTitulo"></ion-input>
         </ion-item>
         <ion-item color="dark">
-            <ion-label position="floating">Codigo</ion-label>
-            <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.key"></ion-input>
+            <ion-label position="floating">key</ion-label>
+            <ion-input  [(ngModel)]="objNotificacion.key"></ion-input>
         </ion-item>
 
         <ion-item color="dark">
             <ion-label position="floating">Contenido Mensaje</ion-label>
-            <ion-input class="ion-text-uppercase" [(ngModel)]="objNotificacion.keyPayload"></ion-input>
+            <ion-input  [(ngModel)]="objNotificacion.keyPayload"></ion-input>
         </ion-item>
         <ion-item color="dark">
             <ion-label>Segmento de Usuarios</ion-label>

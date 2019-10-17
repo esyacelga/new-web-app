@@ -29,6 +29,7 @@ export class NotificacionMasivaPage implements OnInit {
 
     async registrar(notificacion: NotificacionModel) {
         await this.svrNotificacion.registar(notificacion);
+        this.lstNotificacionModel = (await this.svrNotificacion.obtenerTodos()) as NotificacionModel[];
         this.objNotificacion = undefined;
     }
 
@@ -36,6 +37,7 @@ export class NotificacionMasivaPage implements OnInit {
         notificacion.estado = 0;
         await this.svrNotificacion.actualizar(notificacion);
         this.lstNotificacionModel = (await this.svrNotificacion.obtenerTodos()) as NotificacionModel[];
+
     }
 
     async notificar(notificacion: NotificacionModel) {
