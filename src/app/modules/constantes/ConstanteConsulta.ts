@@ -1,4 +1,5 @@
 export const OBTENER_PEDIDOS = 'solicitud/obtenerPedidos';
+export const OBTENER_TODOS_PERSONA = 'persona/obtenerTodos';
 export const OBTENER_TODOS_NOTIFICACIONES = 'notificacion/obtenerTodos';
 export const OBTENER_TODOS_SECTOR = 'sector/obtenerTodosSectores';
 export const OBTENER_TODOS_VEHICULO = 'vehiculoRoute/obtenerTodos';

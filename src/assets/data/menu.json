@@ -1,7 +1,11 @@
 [
-
   {
-    "icon": "hammer",
+    "icon": "person",
+    "name": "Usuarios",
+    "redirectTo": "/rol-persona"
+  },
+  {
+    "icon": "car",
     "name": "Vehiculo",
     "redirectTo": "/vehiculo"
   },
@@ -11,17 +15,17 @@
     "redirectTo": "/tipo-usuario"
   },
   {
-    "icon": "grid",
+    "icon": "hammer",
     "name": "Sector",
     "redirectTo": "/sector"
   },
   {
-    "icon": "grid",
+    "icon": "hammer",
     "name": "Tipo Artículo",
     "redirectTo": "/tipo-articulo"
   },
   {
-    "icon": "grid",
+    "icon": "logo-apple",
     "name": "Artículo",
     "redirectTo": "/articulo"
   },
@@ -31,13 +35,13 @@
     "redirectTo": "/segmento"
   },
   {
-    "icon": "grid",
+    "icon": "hammer",
     "name": "Notificador",
     "redirectTo": "/notificacion-masiva"
   },
 
   {
-    "icon": "grid",
+    "icon": "navigate",
     "name": "Pedidos",
     "redirectTo": "/managment"
   },
