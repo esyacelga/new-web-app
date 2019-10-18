@@ -1,4 +1,10 @@
 [
+
+  {
+    "icon": "hammer",
+    "name": "Vehiculo",
+    "redirectTo": "/vehiculo"
+  },
   {
     "icon": "hammer",
     "name": "Tipo usuario",

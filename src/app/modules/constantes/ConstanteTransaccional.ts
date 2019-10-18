@@ -1,4 +1,5 @@
 export const CRUD_SECTOR = 'sector';
+export const CRUD_VEHICULO = 'vehiculoRoute';
 export const CRUD_NOTIFICACION = 'notificacion';
 export const CRUD_NOTIFICACION_ACTUALIZAR = 'notificacion/actualizar';
 export const CRUD_SEGMENTO = 'articuloSegmento';

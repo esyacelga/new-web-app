@@ -18,7 +18,8 @@ const routes: Routes = [
     {
         path: 'notificacion-masiva',
         loadChildren: './modules/pages/notificacion/notificacion-masiva/notificacion-masiva.module#NotificacionMasivaPageModule'
-    }
+    },  { path: 'vehiculo', loadChildren: './modules/pages/ruta/vehiculo/vehiculo.module#VehiculoPageModule' }
+
 
 
 ];
