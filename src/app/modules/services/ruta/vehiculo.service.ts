@@ -23,7 +23,7 @@ export class VehiculoService {
 
     async obtenerTodos() {
         const requestOptions = new RequestOptions();
-        return await this.genericService.servicioRestGenericoGet({}, OBTENER_TODOS_VEHICULO, requestOptions);
+        return (await this.genericService.servicioRestGenericoGet({}, OBTENER_TODOS_VEHICULO, requestOptions)) as Vehiculo[];
     }
 
 

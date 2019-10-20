@@ -10,6 +10,11 @@
     "redirectTo": "/vehiculo"
   },
   {
+    "icon": "car",
+    "name": "Unidad",
+    "redirectTo": "/unidad-disponibilidad"
+  },
+  {
     "icon": "hammer",
     "name": "Tipo usuario",
     "redirectTo": "/tipo-usuario"

@@ -13,9 +13,10 @@ export class Vehiculo {
 
 export class Disponibilidad {
     _id: string;
+    nombreAlias: string;
     tipoUsuarioPersona: TipoUsuarioPersona;
     vehiculo: Vehiculo;
     numeroTurno: number;
-    enTurno: number;
-    estadoDiponibilidad: string;
+    enTurno: boolean;
+    estadoDiponibilidad: boolean;
 }

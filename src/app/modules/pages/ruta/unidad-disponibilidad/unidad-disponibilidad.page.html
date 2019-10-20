@@ -1,9 +1,75 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>UnidadDisponibilidad</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="dark">
+        <ion-title>Unidad</ion-title>
+        <ion-button ion-button color="primary"
+                    slot="start"
+                    *ngIf="!objDisponibilidad"
+                    (click)="crearNuevo()">NUEVO
+        </ion-button>
+        <ion-button ion-button color="primary" slot="start"
+                    *ngIf="objDisponibilidad"
+                    (click)="objDisponibilidad=null">CANCELAR
+        </ion-button>
+        <ion-button ion-button color="primary"
+                    slot="end"
+                    *ngIf="objDisponibilidad"
+                    (click)="registrar(objDisponibilidad)">GUARDAR
+        </ion-button>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="dark">
+
+
+    <ion-list *ngIf="objDisponibilidad">
+        <ion-item color="dark">
+            <ion-label>Persona</ion-label>
+            <ion-select [(ngModel)]="objDisponibilidad.tipoUsuarioPersona"
+                        okText="Okay" cancelText="Dismiss">
+                <ion-select-option *ngFor="let item  of lstTipoUsuarioPersona"
+                                   value="{{item}}">{{item.persona.apellidos|uppercase}}{{' '}}{{item.persona.nombres|uppercase}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-label>Vehiculo</ion-label>
+            <ion-select [(ngModel)]="objDisponibilidad.vehiculo"
+                        okText="Okay" cancelText="Dismiss">
+                <ion-select-option *ngFor="let item  of lstvehiculo"
+                                   value="{{item}}">{{item.placa|uppercase}}{{' '}}{{item.marca|uppercase}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-label position="floating">Alias Unidad</ion-label>
+            <ion-input type="string" class="ion-text-uppercase" [(ngModel)]="objDisponibilidad.nombreAlias"></ion-input>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-label position="floating">Número de turno</ion-label>
+            <ion-input type="number" class="ion-text-uppercase" [(ngModel)]="objDisponibilidad.numeroTurno"></ion-input>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-checkbox color="primary" slot="start" [(ngModel)]="objDisponibilidad.estadoDiponibilidad"></ion-checkbox>
+            <ion-label>Disponible</ion-label>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-checkbox color="primary" slot="start" [(ngModel)]="objDisponibilidad.enTurno"></ion-checkbox>
+            <ion-label>En turno</ion-label>
+        </ion-item>
+
+    </ion-list>
+
+    <ion-list [hidden]="objDisponibilidad" *ngFor="let iterador of lstUnidadDisponible">
+        <ion-item color="dark">
+            <section text-center>
+                <header>{{iterador.nombreAlias}} </header>
+                <header>{{iterador.vehiculo.placa}}</header>
+                <header>{{iterador.estadoDiponibilidad}}</header>
+            </section>
+        </ion-item>
+    </ion-list>
 
 </ion-content>

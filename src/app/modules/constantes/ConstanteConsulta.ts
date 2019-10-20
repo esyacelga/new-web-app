@@ -15,4 +15,5 @@ export const OBTENER_TODOS_PERSONA_TIPO_USUARIO_POR_TIPO_USUARIO = 'tipoUsuarioP
 
 export const OBTENER_TODOS_SEGMENTOS = 'articuloSegmento/obtenerTodosArticuloSegmento';
 export const OBTENER_TODOS_ARTICULOS = 'articulo/obtenerTodos';
+export const OBTENER_TODOS_DISPONIBILIDAD = 'disponibilidadRoute/obtenerTodos';
 export const OBTENER_TODOS_POR_TIPO_ARTICULO = 'articuloSegmento/obtenerPorTipoArticulo';
