@@ -20,7 +20,6 @@
 
 <ion-content color="dark">
 
-
     <ion-list *ngIf="objDisponibilidad">
         <ion-item color="dark">
             <ion-label>Persona</ion-label>
@@ -57,14 +56,27 @@
 
     </ion-list>
 
-    <ion-list [hidden]="objDisponibilidad" *ngFor="let iterador of lstUnidadDisponible">
-        <ion-item color="dark">
-            <section text-center>
-                <header>{{iterador.nombreAlias}} </header>
-                <header>{{iterador.vehiculo.placa}}</header>
-                <header>{{iterador.estadoDiponibilidad}}</header>
-            </section>
-        </ion-item>
+
+    <ion-list *ngIf="!objDisponibilidad">
+        <ion-item-sliding *ngFor="let item of lstUnidadDisponible; let i = index">
+            <ion-item color="dark">
+
+                <section >
+                    <header>{{item.nombreAlias}} </header>
+                    <header>{{item.vehiculo.placa}}</header>
+                </section>
+                <ion-badge slot="end" color="warning" *ngIf="!item.estadoDiponibilidad">No Disponible</ion-badge>
+                <ion-badge slot="end" color="success" *ngIf="item.estadoDiponibilidad">Disponible</ion-badge>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="tertiary" (click)="objDisponibilidad=item">
+                    <ion-icon slot="icon-only" ios="ios-list-box" md="md-list-box"></ion-icon>
+                </ion-item-option>
+                <ion-item-option color="medium" (click)="eliminar(item)">
+                    <ion-icon slot="icon-only" name="hand"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 
 </ion-content>

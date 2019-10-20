@@ -11,7 +11,7 @@ import {Util} from '../../../system/generic/classes/util';
 import {COLOR_TOAST_WARNING} from '../../../system/generic/classes/constant';
 
 @Component({
-    selector: 'app-unidad-disponibilidad',
+    selector    : 'app-unidad-disponibilidad',
     templateUrl: './unidad-disponibilidad.page.html',
     styleUrls: ['./unidad-disponibilidad.page.scss'],
 })
@@ -26,6 +26,15 @@ export class UnidadDisponibilidadPage implements OnInit {
                 private svrUtil: Util,
                 private svtTipoUsuario: TipoUsuarioService, private svrVehiculo: VehiculoService) {
     }
+
+    async eliminar(obj: Disponibilidad) {
+        this.lstUnidadDisponible = [];
+        obj.estadoDiponibilidad = false;
+        await this.svrDisp.registar(obj);
+        this.lstUnidadDisponible = await this.svrDisp.obtenerTodos();
+        this.objDisponibilidad = null;
+    }
+
 
     crearNuevo() {
         this.objDisponibilidad = new Disponibilidad();

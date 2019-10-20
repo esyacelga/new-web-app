@@ -4,6 +4,7 @@ export class Vehiculo {
     _id: string;
     modelo: string;
     placa: string;
+    color: string;
     marca: string;
     tipo: string;
     estado: number;
