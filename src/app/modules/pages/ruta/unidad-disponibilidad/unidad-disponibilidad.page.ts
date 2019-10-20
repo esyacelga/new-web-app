@@ -31,7 +31,7 @@ export class UnidadDisponibilidadPage implements OnInit {
         this.objDisponibilidad = new Disponibilidad();
     }
 
-    registrar(obj: Disponibilidad) {
+    async registrar(obj: Disponibilidad) {
         if (!obj.tipoUsuarioPersona) {
             this.svrUtil.presentToast('No se ha seleccionado la persona', COLOR_TOAST_WARNING);
             return;
@@ -44,7 +44,9 @@ export class UnidadDisponibilidadPage implements OnInit {
             this.svrUtil.presentToast('No se ha ingresado el alias', COLOR_TOAST_WARNING);
             return;
         }
-        this.svrDisp.registar(obj);
+        await this.svrDisp.registar(obj);
+        this.lstUnidadDisponible = await this.svrDisp.obtenerTodos();
+        this.objDisponibilidad = null;
     }
 
     async ngOnInit() {

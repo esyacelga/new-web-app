@@ -24,30 +24,25 @@
     <ion-list *ngIf="objDisponibilidad">
         <ion-item color="dark">
             <ion-label>Persona</ion-label>
-            <ion-select [(ngModel)]="objDisponibilidad.tipoUsuarioPersona"
+            <ion-select [(ngModel)]="objDisponibilidad.tipoUsuarioPersona._id"
                         okText="Okay" cancelText="Dismiss">
                 <ion-select-option *ngFor="let item  of lstTipoUsuarioPersona"
-                                   value="{{item}}">{{item.persona.apellidos|uppercase}}{{' '}}{{item.persona.nombres|uppercase}}</ion-select-option>
+                                   value="{{item._id}}">{{item.persona.apellidos|uppercase}}{{' '}}{{item.persona.nombres|uppercase}}</ion-select-option>
             </ion-select>
         </ion-item>
 
         <ion-item color="dark">
             <ion-label>Vehiculo</ion-label>
-            <ion-select [(ngModel)]="objDisponibilidad.vehiculo"
+            <ion-select [(ngModel)]="objDisponibilidad.vehiculo._id "
                         okText="Okay" cancelText="Dismiss">
                 <ion-select-option *ngFor="let item  of lstvehiculo"
-                                   value="{{item}}">{{item.placa|uppercase}}{{' '}}{{item.marca|uppercase}}</ion-select-option>
+                                   value="{{item._id}}">{{item.placa|uppercase}}{{' '}}{{item.marca|uppercase}}</ion-select-option>
             </ion-select>
         </ion-item>
 
         <ion-item color="dark">
             <ion-label position="floating">Alias Unidad</ion-label>
             <ion-input type="string" class="ion-text-uppercase" [(ngModel)]="objDisponibilidad.nombreAlias"></ion-input>
-        </ion-item>
-
-        <ion-item color="dark">
-            <ion-label position="floating">Número de turno</ion-label>
-            <ion-input type="number" class="ion-text-uppercase" [(ngModel)]="objDisponibilidad.numeroTurno"></ion-input>
         </ion-item>
 
         <ion-item color="dark">

@@ -14,8 +14,8 @@ export class Vehiculo {
 export class Disponibilidad {
     _id: string;
     nombreAlias: string;
-    tipoUsuarioPersona: TipoUsuarioPersona;
-    vehiculo: Vehiculo;
+    tipoUsuarioPersona: TipoUsuarioPersona = new TipoUsuarioPersona();
+    vehiculo: Vehiculo = new Vehiculo();
     numeroTurno: number;
     enTurno: boolean;
     estadoDiponibilidad: boolean;
