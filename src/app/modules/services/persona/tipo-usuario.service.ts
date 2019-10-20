@@ -4,7 +4,7 @@ import {TipoUsuario} from '../../classes/persona/TipoUsuario';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
 import {CRUD_TIPO_USUARIO} from '../../constantes/ConstanteTransaccional';
 import {Sector} from '../../classes/persona/Sector';
-import {OBTENER_TIPO_USUARIO, OBTENER_TODOS_TIPO_USUARIO} from '../../constantes/ConstanteConsulta';
+import {OBTENER_TIPO_USUARIO, OBTENER_TODOS_TIPO_USUARIO, OBTENER_TODOS_TIPO_USUARIO_POR_CODIGO} from '../../constantes/ConstanteConsulta';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +24,11 @@ export class TipoUsuarioService {
     async listarTodos() {
         const requestOptions = new RequestOptions();
         return await this.genericService.servicioRestGenericoGet({}, OBTENER_TODOS_TIPO_USUARIO, requestOptions);
+    }
+
+    async obtenerPorCodigo(codigo) {
+        const requestOptions = new RequestOptions();
+        return (await this.genericService.servicioRestGenericoGet({codigo}, OBTENER_TODOS_TIPO_USUARIO_POR_CODIGO, requestOptions)) as TipoUsuario;
     }
 
     async buscarRegistro(campo, valor) {

@@ -2,9 +2,13 @@ import {Injectable} from '@angular/core';
 import {ExecuteCallProcedureService} from '../../system/generic/service/execute-call-procedure.service';
 import {ModeloTipoUsuarioPersona, TipoUsuarioPersona} from '../../classes/persona/TipoUsuarioPersona';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
-import {CRUD_TIPO_USUARIO_PERSONA} from '../../constantes/ConstanteTransaccional';
+import {CRUD_TIPO_USUARIO_PERSONA, CRUD_TIPO_USUARIO_PERSONA_INSERTAR} from '../../constantes/ConstanteTransaccional';
 import {Sector} from '../../classes/persona/Sector';
-import {OBTENER_TODOS_PERSONA_TIPO_USUARIO} from '../../constantes/ConstanteConsulta';
+import {
+    OBTENER_TODOS_PERSONA_TIPO_USUARIO,
+    OBTENER_TODOS_PERSONA_TIPO_USUARIO_POR_PERSONA,
+    OBTENER_TODOS_PERSONA_TIPO_USUARIO_POR_TIPO_USUARIO
+} from '../../constantes/ConstanteConsulta';
 import {Pedido} from '../../classes/mensajeria/Pedido';
 
 @Injectable({
@@ -16,11 +20,38 @@ export class TipoUsuarioPersonaService {
 
     }
 
+    /**
+     * Obtiene documento tipo_usuario_persona por id_persona
+     * @param idPersona
+     */
+    async obtenerPorPersona(idPersona: string) {
+        const requestOptions = new RequestOptions();
+        const lstTipoPersonaUsuario: ModeloTipoUsuarioPersona[] =
+            (await this.genericService.servicioRestGenericoGet({persona: idPersona}, OBTENER_TODOS_PERSONA_TIPO_USUARIO_POR_PERSONA, requestOptions)) as ModeloTipoUsuarioPersona[];
+        return lstTipoPersonaUsuario;
+    }
+
+    /**
+     * Obtiene documento tipo_usuario_persona por idtipoUsuario
+     * @param idPersona
+     */
+    async obtenerPorTipoUsuario(idtipoUsuario: string) {
+        const requestOptions = new RequestOptions();
+        const lstTipoPersonaUsuario: ModeloTipoUsuarioPersona[] =
+            (await this.genericService.servicioRestGenericoGet({tipoUsuario: idtipoUsuario}, OBTENER_TODOS_PERSONA_TIPO_USUARIO_POR_TIPO_USUARIO, requestOptions)) as ModeloTipoUsuarioPersona[];
+        return lstTipoPersonaUsuario;
+    }
+
     async registar(tipoUsuarioPersona: TipoUsuarioPersona) {
         const requestOptions = new RequestOptions();
-
         return await this.genericService.servicioRestGenericoPost(tipoUsuarioPersona, CRUD_TIPO_USUARIO_PERSONA, requestOptions) as Sector;
     }
+
+    async insertar(tipoUsuarioPersona: TipoUsuarioPersona) {
+        const requestOptions = new RequestOptions();
+        return await this.genericService.servicioRestGenericoPost(tipoUsuarioPersona, CRUD_TIPO_USUARIO_PERSONA_INSERTAR, requestOptions) as Sector;
+    }
+
 
     async obtenerTipoUsuarioPersonaLista(lstUsuario: string[], tipoUsuario: string) {
         const lstTipoPersonaUsuarioRetorno: ModeloTipoUsuarioPersona[] = [];

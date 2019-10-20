@@ -11,6 +11,7 @@ export const CRUD_ARTICULO_SIMPLE = 'articulo/registrarArticulo';
 export const CRUD_USUARIO = 'usuario';
 export const CRUD_TIPO_USUARIO = 'tipoUsuario';
 export const CRUD_TIPO_USUARIO_PERSONA = 'tipoUsuarioPersona';
+export const CRUD_TIPO_USUARIO_PERSONA_INSERTAR = 'tipoUsuarioPersona/insertar';
 export const URL_CREAR_TIPO_ARTICULO = 'tipoArticulo';
 export const URL_CRUD_ARTICULO_SEGMENTO = 'articuloSegmento';
 export const URL_CRUD_ARTICULO_IMAGE_UPLOAD = 'articulo/upload';
