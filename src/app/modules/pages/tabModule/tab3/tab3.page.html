@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content color="dark">
+    <ion-list>
+        <ion-list-header>
+            Unidades
+        </ion-list-header>
+    </ion-list>
+    <ion-list *ngFor="let item of lstUnidadDisponible">
+        <ion-item>
+            <ion-avatar slot="start">
+                <img src="/assets/avatars/{{ item.tipoUsuarioPersona.usuario.avatar }}">
+            </ion-avatar>
+            <ion-label>
+                <h2>{{item.tipoUsuarioPersona.persona.nombres}}{{' '}} {{item.tipoUsuarioPersona.persona.apellidos}}</h2>
+                <h3>Unidad:{{' '}}{{item.nombreAlias}}</h3>
+                <p>Placa:{{' '}}{{item.vehiculo.placa}}</p>
+            </ion-label>
+            <ion-badge slot="end" color="warning" *ngIf="!item.estadoDiponibilidad">No Disponible</ion-badge>
+            <ion-badge slot="end" color="success" *ngIf="item.estadoDiponibilidad">Disponible</ion-badge>
+        </ion-item>
+    </ion-list>
 
-<ion-content></ion-content>
+
+</ion-content>
