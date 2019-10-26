@@ -14,6 +14,8 @@ import {TipoUsuarioService} from '../../services/persona/tipo-usuario.service';
 import {Util} from '../../system/generic/classes/util';
 import {COLOR_TOAST_DARK, COLOR_TOAST_WARNING} from '../../system/generic/classes/constant';
 import {PushNotificationService} from '../../system/generic/service/push-notification.service';
+import {ModeloTipoUsuarioPersona} from '../../classes/persona/TipoUsuarioPersona';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -102,6 +104,7 @@ export class LoginPage implements OnInit {
     constructor(private formFuilder: FormBuilder, private  util: Util,
                 private svrUsuario: UsuarioService,
                 private navCtrl: NavController,
+                private svrRoute: Router,
                 private svrStorage: StorageAppService,
                 private svtNotificacion: PushNotificationService,
                 private platform: Platform,
@@ -144,13 +147,17 @@ export class LoginPage implements OnInit {
         if (this.ingresoForm.status === 'INVALID') {
             return;
         }
-        const data = await this.svrUsuario.loginUsuario(this.ingresoForm.value.correo, this.ingresoForm.value.clave);
-        if (data) {
-            this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true});
-            if (this.platform.is('cordova')) {
-                this.svtNotificacion.configuracionInicial();
+        const data: ModeloTipoUsuarioPersona[] = (await this.svrUsuario.loginUsuario(this.ingresoForm.value.correo, this.ingresoForm.value.clave)) as ModeloTipoUsuarioPersona[];
+        if (data && data.length > 0) {
+            if (data.length === 1) {
+                this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true});
+                if (this.platform.is('cordova')) {
+                    this.svtNotificacion.configuracionInicial();
+                }
+                this.svrStorage.setStorageObject(data[0], 'usuario');
+            } else {
+                this.svrRoute.navigate(['/rol-usuario', data[0].persona._id]);
             }
-            this.svrStorage.setStorageObject(data, 'usuario');
         } else {
             // mostrar alerta de usuario y contraseña no correctos
             this.util.presentToast('Usuario y contraseña no son correctos.', COLOR_TOAST_WARNING);

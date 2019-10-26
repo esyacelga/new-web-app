@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {StorageAppService} from './modules/system/generic/service/storage-app.service';
 import {PushNotificationService} from './modules/system/generic/service/push-notification.service';
+import {ModeloTipoUsuarioPersona} from './modules/classes/persona/TipoUsuarioPersona';
 
 @Component({
     selector: 'app-root',
@@ -13,6 +14,7 @@ import {PushNotificationService} from './modules/system/generic/service/push-not
 })
 export class AppComponent {
     usuario: any;
+    modeloPersonaTipoUsuario: ModeloTipoUsuarioPersona;
 
     constructor(
         private platform: Platform,
@@ -26,26 +28,23 @@ export class AppComponent {
     }
 
     initializeApp() {
-        this.platform.ready().then(() => {
-            this.svrStorage.loadStorageObject('usuario').then((response) => {
-                // @ts-ignore
-                if (response && response.usuario && response.usuario.clave) {
-                    this.navCtrl.navigateRoot('main');
-                } else {
-                    this.navCtrl.navigateRoot('login');
-                }
-                if (this.platform.is('cordova')) {
-                    this.svtNotificacion.configuracionInicial();
-                }
-                this.statusBar.styleDefault();
-                this.splashScreen.hide();
-                if (this.platform.is('cordova')) {
-                    console.log('Entrando a Notificaciion');
-                    this.svtNotificacion.configuracionInicial();
-                }
-            }, reason => {
-                this.navCtrl.navigateRoot('signin');
-            });
+        this.platform.ready().then(async () => {
+            this.modeloPersonaTipoUsuario = (await this.svrStorage.loadStorageObject('usuario')) as ModeloTipoUsuarioPersona;
+            console.log(this.modeloPersonaTipoUsuario);
+            if (this.modeloPersonaTipoUsuario && this.modeloPersonaTipoUsuario.usuario && this.modeloPersonaTipoUsuario.usuario.clave) {
+                this.navCtrl.navigateRoot('main');
+            } else {
+                this.navCtrl.navigateRoot('login');
+            }
+            if (this.platform.is('cordova')) {
+                this.svtNotificacion.configuracionInicial();
+            }
+            this.statusBar.styleDefault();
+            this.splashScreen.hide();
+            if (this.platform.is('cordova')) {
+                console.log('Entrando a Notificaciion');
+                this.svtNotificacion.configuracionInicial();
+            }
         });
     }
 }

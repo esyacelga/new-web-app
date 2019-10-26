@@ -10,6 +10,7 @@ export class TipoUsuarioPersona {
 
 export class ModeloTipoUsuarioPersona {
     _id: string;
+    estado: string;
     usuario: ModeloUsuario = new ModeloUsuario();
     persona: ModeloPersona = new ModeloPersona();
     tipoUsuario: ModeloTipoUsuario = new ModeloTipoUsuario();
@@ -17,6 +18,7 @@ export class ModeloTipoUsuarioPersona {
 
 export class ModeloUsuario {
     _id: string;
+    clave: string;
     playerId: string;
     avatar: string;
 }
