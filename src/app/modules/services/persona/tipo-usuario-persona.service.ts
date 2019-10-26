@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ExecuteCallProcedureService} from '../../system/generic/service/execute-call-procedure.service';
-import {ModeloTipoUsuarioPersona, TipoUsuarioPersona} from '../../classes/persona/TipoUsuarioPersona';
+import {ModeloTipoUsuarioPersona, TipoUsuarioPersona, TipoUsuarioPersonaDto} from '../../classes/persona/TipoUsuarioPersona';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
 import {CRUD_TIPO_USUARIO_PERSONA, CRUD_TIPO_USUARIO_PERSONA_INSERTAR} from '../../constantes/ConstanteTransaccional';
 import {Sector} from '../../classes/persona/Sector';
@@ -10,13 +10,15 @@ import {
     OBTENER_TODOS_PERSONA_TIPO_USUARIO_POR_TIPO_USUARIO
 } from '../../constantes/ConstanteConsulta';
 import {Pedido} from '../../classes/mensajeria/Pedido';
+import {Util} from '../../system/generic/classes/util';
+import {COLOR_TOAST_WARNING} from '../../system/generic/classes/constant';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TipoUsuarioPersonaService {
 
-    constructor(private genericService: ExecuteCallProcedureService) {
+    constructor(private genericService: ExecuteCallProcedureService, private svrUtil: Util) {
 
     }
 
@@ -42,8 +44,32 @@ export class TipoUsuarioPersonaService {
         return lstTipoPersonaUsuario;
     }
 
-    async registar(tipoUsuarioPersona: TipoUsuarioPersona) {
+    async registar(tipoUsuarioPersona: TipoUsuarioPersonaDto) {
         const requestOptions = new RequestOptions();
+        if (!tipoUsuarioPersona.sector || tipoUsuarioPersona.sector === 'segmentoArticulo.sector') {
+            this.svrUtil.presentToast('Debe ingresar el sector', COLOR_TOAST_WARNING);
+            return null;
+        }
+        if (!tipoUsuarioPersona.fechaNacimiento) {
+            this.svrUtil.presentToast('Debe ingresar la fecha de nacimiento', COLOR_TOAST_WARNING);
+            return null;
+        }
+        if (!tipoUsuarioPersona.nombres) {
+            this.svrUtil.presentToast('Debe ingresar sus nobres', COLOR_TOAST_WARNING);
+            return null;
+        }
+        if (!tipoUsuarioPersona.clave) {
+            this.svrUtil.presentToast('Debe ingresar la clave', COLOR_TOAST_WARNING);
+            return null;
+        }
+        if (!tipoUsuarioPersona.correo) {
+            this.svrUtil.presentToast('Debe ingresar su correo', COLOR_TOAST_WARNING);
+            return null;
+        }
+        if (!tipoUsuarioPersona.avatar) {
+            this.svrUtil.presentToast('Debe seleccionar un avatar', COLOR_TOAST_WARNING);
+            return null;
+        }
         return await this.genericService.servicioRestGenericoPost(tipoUsuarioPersona, CRUD_TIPO_USUARIO_PERSONA, requestOptions) as Sector;
     }
 

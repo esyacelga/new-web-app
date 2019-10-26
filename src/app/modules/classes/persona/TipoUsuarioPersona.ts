@@ -39,3 +39,12 @@ export class ModeloPersona {
     correo: string = '';
     avatar: string = '';
 }
+
+
+export class TipoUsuarioPersonaDto extends ModeloPersona {
+    playerId: string = '';
+    clave: string = '';
+    estado: string = '';
+    sector: string = '';
+    tipoUsuario: string = '';
+}

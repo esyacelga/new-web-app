@@ -11,7 +11,7 @@ import {Util} from '../../../system/generic/classes/util';
 import {COLOR_TOAST_WARNING} from '../../../system/generic/classes/constant';
 
 @Component({
-    selector    : 'app-unidad-disponibilidad',
+    selector: 'app-unidad-disponibilidad',
     templateUrl: './unidad-disponibilidad.page.html',
     styleUrls: ['./unidad-disponibilidad.page.scss'],
 })
@@ -61,6 +61,10 @@ export class UnidadDisponibilidadPage implements OnInit {
     async ngOnInit() {
         this.lstvehiculo = await this.svrVehiculo.obtenerTodos();
         this.objTipoUsuario = await this.svtTipoUsuario.obtenerPorCodigo(PARAMETRO_CHOFER);
+        if (!this.objTipoUsuario) {
+            this.svrUtil.presentToast('El parámetro: ' + PARAMETRO_CHOFER + ' NO ESTA CONFIGURADO', COLOR_TOAST_WARNING);
+            return;
+        }
         this.lstTipoUsuarioPersona = await this.svrTipoUsuarioPersona.obtenerPorTipoUsuario(this.objTipoUsuario._id);
         this.lstUnidadDisponible = await this.svrDisp.obtenerTodos();
         console.log(this.lstTipoUsuarioPersona);

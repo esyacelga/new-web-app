@@ -12,7 +12,7 @@ import {SectorService} from '../../services/persona/sector.service';
 import {TipoUsuarioPersonaService} from '../../services/persona/tipo-usuario-persona.service';
 import {TipoUsuarioService} from '../../services/persona/tipo-usuario.service';
 import {Util} from '../../system/generic/classes/util';
-import {COLOR_TOAST_DARK, COLOR_TOAST_WARNING} from '../../system/generic/classes/constant';
+import {COLOR_TOAST_WARNING} from '../../system/generic/classes/constant';
 import {PushNotificationService} from '../../system/generic/service/push-notification.service';
 import {ModeloTipoUsuarioPersona} from '../../classes/persona/TipoUsuarioPersona';
 import {Router} from '@angular/router';
@@ -166,19 +166,17 @@ export class LoginPage implements OnInit {
 
 
     async registerNewUser() {
-        //Selecciiónd de avatar por defecto
         if (this.registerUser.avatar === '' || this.registerUser.avatar === null) {
             this.registerUser.avatar = 'av-1.png';
         }
-        if (this.loginForm.status === 'VALID') {
-            const usuarioApp = this.loginForm.value;
-            usuarioApp.tipoUsuario = this.objTipoUsuario._id;
-            usuarioApp.avatar = this.registerUser.avatar;
-            const data = await this.svtTipoUsuariPersona.registar(usuarioApp);
+        const usuarioApp = this.loginForm.value;
+        usuarioApp.tipoUsuario = this.objTipoUsuario._id;
+        usuarioApp.avatar = this.registerUser.avatar;
+        const data = await this.svtTipoUsuariPersona.registar(usuarioApp);
+        if (data) {
             this.mostrarLogin();
-        } else {
-            this.util.presentToast('Por favor ingrese la información solicitada', COLOR_TOAST_DARK);
         }
+
     }
 
     mostrarRegistro() {
