@@ -27,6 +27,7 @@ export class ModeloUsuario {
 export class ModeloTipoUsuario {
     _id: string;
     descripcion: string;
+    codigo: string;
 }
 
 export class ModeloPersona {

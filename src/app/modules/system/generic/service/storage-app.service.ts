@@ -12,6 +12,15 @@ export class StorageAppService {
 
     }
 
+    eliminarTodo() {
+        if (this.platform.is('cordova')) {
+            this.storage.clear();
+
+        } else {
+            localStorage.clear();
+        }
+    }
+
     loadStorageObject(key: string) {
         const promesa = new Promise((resolve, reject) => {
             if (this.platform.is('cordova')) {
