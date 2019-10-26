@@ -14,8 +14,8 @@
                 <h3>Unidad:{{' '}}{{item.nombreAlias}}</h3>
                 <p>Placa:{{' '}}{{item.vehiculo.placa}}</p>
             </ion-label>
-            <ion-badge slot="end" color="warning" *ngIf="!item.estadoDiponibilidad">No Disponible</ion-badge>
-            <ion-badge slot="end" color="success" *ngIf="item.estadoDiponibilidad">Disponible</ion-badge>
+            <ion-badge slot="end" color="{{ item.estadoDiponibilidad.color }}">{{item.estadoDiponibilidad.nombre}}</ion-badge>
+
         </ion-item>
     </ion-list>
 </ion-content>
