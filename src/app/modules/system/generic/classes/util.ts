@@ -21,6 +21,26 @@ export class Util {
 
     }
 
+
+    public buscarObjetoPorCampo(lista: [], campo: string, valor: string) {
+        let obj;
+        if (!valor || valor === null) {
+            return obj;
+        }
+        if (lista && lista.length) {
+
+            for (let i = 0; i < lista.length; i++) {
+                if (String(lista[i][campo]).trim() === String(valor).trim()) {
+                    obj = lista[i];
+                    break;
+                }
+            }
+        }
+        return obj;
+    }
+
+
+
     public async presentToast(mensaje, color) {
         const toast = await this.notify.create({
             message: mensaje,

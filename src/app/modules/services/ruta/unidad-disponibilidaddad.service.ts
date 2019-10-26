@@ -17,13 +17,6 @@ export class UnidadDisponibilidaddadService {
 
     async registar(disponibilidad: Disponibilidad) {
         const requestOptions = new RequestOptions();
-        const data = {
-            _id: disponibilidad._id, nombreAlias: disponibilidad.nombreAlias,
-            tipoUsuarioPersona: disponibilidad.tipoUsuarioPersona._id, vehiculo: disponibilidad.vehiculo._id,
-            enTurno: disponibilidad.enTurno,
-            estadoDiponibilidad: disponibilidad.estadoDiponibilidad
-
-        };
         return await this.genericService.servicioRestGenericoPost(disponibilidad, CRUD_DISPONIBILIDAD, requestOptions) as Vehiculo;
     }
 

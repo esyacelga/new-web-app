@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'vehiculo', loadChildren: './modules/pages/ruta/vehiculo/vehiculo.module#VehiculoPageModule' },
   { path: 'rol-persona', loadChildren: './modules/pages/ruta/rol-persona/rol-persona.module#RolPersonaPageModule' },
   { path: 'unidad-disponibilidad', loadChildren: './modules/pages/ruta/unidad-disponibilidad/unidad-disponibilidad.module#UnidadDisponibilidadPageModule' },
-  { path: 'rol-usuario/:idPersona', loadChildren: './modules/pages/login/rol-usuario/rol-usuario.module#RolUsuarioPageModule' }
+  { path: 'rol-usuario/:idPersona', loadChildren: './modules/pages/login/rol-usuario/rol-usuario.module#RolUsuarioPageModule' },  { path: 'estado-ruta', loadChildren: './modules/pages/ruta/estado-ruta/estado-ruta.module#EstadoRutaPageModule' }
+
 
 
 

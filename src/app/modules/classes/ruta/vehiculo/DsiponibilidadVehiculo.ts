@@ -11,6 +11,13 @@ export class Vehiculo {
 
 }
 
+export class EstadoRuta {
+    _id: string;
+    nombre: string;
+    codigo: string;
+    estado: number;
+
+}
 
 export class Disponibilidad {
     _id: string;
@@ -19,9 +26,8 @@ export class Disponibilidad {
     vehiculo: Vehiculo = new Vehiculo();
     numeroTurno: number;
     enTurno: boolean;
-    estadoDiponibilidad: boolean;
+    estadoDiponibilidad: EstadoRuta = new EstadoRuta();
 }
-
 
 
 export class ModeloDisponibilidad {

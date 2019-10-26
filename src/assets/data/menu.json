@@ -30,6 +30,11 @@
     "redirectTo": "/tipo-articulo"
   },
   {
+    "icon": "hammer",
+    "name": "Estado Disponibilidad",
+    "redirectTo": "/estado-ruta"
+  },
+  {
     "icon": "logo-apple",
     "name": "Artículo",
     "redirectTo": "/articulo"

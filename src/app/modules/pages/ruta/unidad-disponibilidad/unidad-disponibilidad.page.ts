@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TipoUsuarioPersonaService} from '../../../services/persona/tipo-usuario-persona.service';
 import {ModeloTipoUsuarioPersona} from '../../../classes/persona/TipoUsuarioPersona';
-import {Disponibilidad, Vehiculo} from '../../../classes/ruta/vehiculo/DsiponibilidadVehiculo';
+import {Disponibilidad, EstadoRuta, Vehiculo} from '../../../classes/ruta/vehiculo/DsiponibilidadVehiculo';
 import {TipoUsuarioService} from '../../../services/persona/tipo-usuario.service';
 import {TipoUsuario} from '../../../classes/persona/TipoUsuario';
 import {PARAMETRO_CHOFER} from '../../../constantes/ConstanteParametros';
@@ -9,6 +9,7 @@ import {VehiculoService} from '../../../services/ruta/vehiculo.service';
 import {UnidadDisponibilidaddadService} from '../../../services/ruta/unidad-disponibilidaddad.service';
 import {Util} from '../../../system/generic/classes/util';
 import {COLOR_TOAST_WARNING} from '../../../system/generic/classes/constant';
+import {EstadoRutaService} from '../../../services/ruta/estado-ruta.service';
 
 @Component({
     selector: 'app-unidad-disponibilidad',
@@ -21,15 +22,16 @@ export class UnidadDisponibilidadPage implements OnInit {
     objDisponibilidad: Disponibilidad;
     objTipoUsuario: TipoUsuario;
     lstvehiculo: Vehiculo[];
+    lstEstadoRuta: EstadoRuta[] = [];
 
     constructor(private svrTipoUsuarioPersona: TipoUsuarioPersonaService, private svrDisp: UnidadDisponibilidaddadService,
-                private svrUtil: Util,
+                private svrUtil: Util, private svrEstado: EstadoRutaService,
                 private svtTipoUsuario: TipoUsuarioService, private svrVehiculo: VehiculoService) {
     }
 
     async eliminar(obj: Disponibilidad) {
         this.lstUnidadDisponible = [];
-        obj.estadoDiponibilidad = false;
+        //obj.estadoDiponibilidad = false;
         await this.svrDisp.registar(obj);
         this.lstUnidadDisponible = await this.svrDisp.obtenerTodos();
         this.objDisponibilidad = null;
@@ -59,6 +61,7 @@ export class UnidadDisponibilidadPage implements OnInit {
     }
 
     async ngOnInit() {
+        this.lstEstadoRuta = await this.svrEstado.obtenerTodos();
         this.lstvehiculo = await this.svrVehiculo.obtenerTodos();
         this.objTipoUsuario = await this.svtTipoUsuario.obtenerPorCodigo(PARAMETRO_CHOFER);
         if (!this.objTipoUsuario) {

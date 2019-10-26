@@ -44,24 +44,26 @@
             <ion-input type="string" class="ion-text-uppercase" [(ngModel)]="objDisponibilidad.nombreAlias"></ion-input>
         </ion-item>
 
-        <ion-item color="dark">
-            <ion-checkbox color="primary" slot="start" [(ngModel)]="objDisponibilidad.estadoDiponibilidad"></ion-checkbox>
-            <ion-label>Disponible</ion-label>
-        </ion-item>
+        <ion-radio-group [(ngModel)]="objDisponibilidad.estadoDiponibilidad._id">
+            <div *ngFor="let item of lstEstadoRuta;">
+                <ion-item color="dark">
+                    <ion-label>{{item.nombre}}</ion-label>
+                    <ion-radio slot="start" color="success" value="{{item._id}}"></ion-radio>
+                </ion-item>
+            </div>
+        </ion-radio-group>
 
         <ion-item color="dark">
             <ion-checkbox color="primary" slot="start" [(ngModel)]="objDisponibilidad.enTurno"></ion-checkbox>
             <ion-label>En turno</ion-label>
         </ion-item>
-
     </ion-list>
-
 
     <ion-list *ngIf="!objDisponibilidad">
         <ion-item-sliding *ngFor="let item of lstUnidadDisponible; let i = index">
             <ion-item color="dark">
 
-                <section >
+                <section>
                     <header>{{item.nombreAlias}} </header>
                     <header>{{item.vehiculo.placa}}</header>
                 </section>
