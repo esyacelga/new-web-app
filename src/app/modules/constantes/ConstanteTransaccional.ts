@@ -6,8 +6,8 @@ export const CRUD_DISPONIBILIDAD = 'disponibilidadRoute';
 export const CRUD_NOTIFICACION = 'notificacion';
 export const CRUD_NOTIFICACION_ACTUALIZAR = 'notificacion/actualizar';
 export const CRUD_SEGMENTO = 'articuloSegmento';
-export const CRUD_SOLICITUD = 'solicitud'
-export const CRUD_ACTUALIZAR_SOLICITUD = 'solicitud/actualizar'
+export const CRUD_SOLICITUD = 'solicitud';
+export const CRUD_ACTUALIZAR_SOLICITUD = 'solicitud/actualizar';
 export const CRUD_ARTICULO = 'articulo';
 export const CRUD_ARTICULO_SIMPLE = 'articulo/registrarArticulo';
 

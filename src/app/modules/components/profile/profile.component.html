@@ -1,3 +1,4 @@
+
 <form [formGroup]="ingresoForm" (ngSubmit)="actualizarPersona()">
     <ion-row>
         <ion-col>
@@ -79,18 +80,19 @@
                     </ng-container>
                 </div>
 
-              <!--  <ion-item color="dark">
-                    <ion-input formControlName="clave" type="password"
-                               placeholder="Password"></ion-input>
-                </ion-item>
-                <div class="error-messages">
-                    <ng-container *ngFor="let error of error_messages.clave">
-                        <div class="error-message"
-                             *ngIf="ingresoForm.get('clave').hasError(error.type) && (ingresoForm.get('clave').dirty || ingresoForm.get('clave').touched) ">
-                            {{error.message}}
-                        </div>
-                    </ng-container>
-                </div>-->
+
+                <!--  <ion-item color="dark">
+                      <ion-input formControlName="clave" type="password"
+                                 placeholder="Password"></ion-input>
+                  </ion-item>
+                  <div class="error-messages">
+                      <ng-container *ngFor="let error of error_messages.clave">
+                          <div class="error-message"
+                               *ngIf="ingresoForm.get('clave').hasError(error.type) && (ingresoForm.get('clave').dirty || ingresoForm.get('clave').touched) ">
+                              {{error.message}}
+                          </div>
+                      </ng-container>
+                  </div>-->
 
                 <!--<ion-item color="dark">
                     <ion-input formControlName="passwordValidator" type="password"
@@ -125,5 +127,11 @@
         </ion-col>
     </ion-row>
 </form>
+<!--
+    <img *ngIf="!modeloPersonaTipoUsuario || !modeloPersonaTipoUsuario.usuario || !modeloPersonaTipoUsuario.usuario.imagen"
+         src="/assets/img/pre-imagen.png">
+-->
+
+
 
 

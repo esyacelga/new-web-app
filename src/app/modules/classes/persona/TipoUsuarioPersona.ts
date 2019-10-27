@@ -14,13 +14,16 @@ export class ModeloTipoUsuarioPersona {
     usuario: ModeloUsuario = new ModeloUsuario();
     persona: ModeloPersona = new ModeloPersona();
     tipoUsuario: ModeloTipoUsuario = new ModeloTipoUsuario();
+    imagen: string;
 }
+
 
 export class ModeloUsuario {
     _id: string;
     clave: string;
     playerId: string;
     avatar: string;
+    imagen: string;
 }
 
 

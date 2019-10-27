@@ -11,6 +11,7 @@ import {COLOR_TOAST_PRIMARY, COLOR_TOAST_WARNING} from '../../system/generic/cla
 })
 export class ImageGeneratorComponent implements OnInit {
     @Input() ruta: string;
+    @Input() nombreImagen: string;
     imagen: string;
 
     constructor(private camera: Camera, private svrImage: ImageGeneratorService, private svr: Util) {

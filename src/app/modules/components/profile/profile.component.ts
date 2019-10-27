@@ -18,7 +18,8 @@ import {PhotoProfilePage} from '../../pages/photo-profile/photo-profile.page';
     styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
+    imagen: string;
+    ruta: string;
     tipoUsuarioPersona: TipoUsuarioPersonaDto;
     ingresoForm: FormGroup;
     lstSectores: Sector[];
@@ -30,6 +31,14 @@ export class ProfileComponent implements OnInit {
                 private svrStorage: StorageAppService, private modalCtrl: ModalController,
                 private svrTipoUsuario: TipoUsuarioService, private util: Util, private svrPersona: PersonaService) {
         this.construirFormRegistro();
+        this.cargar();
+    }
+
+
+    async cargar() {
+        this.modeloPersonaTipoUsuario = (await this.svrStorage.loadStorageObject('usuario')) as ModeloTipoUsuarioPersona;
+        this.imagen = this.modeloPersonaTipoUsuario.imagen;
+        this.ruta = this.modeloPersonaTipoUsuario._id;
     }
 
     async abrirModal() {
@@ -117,7 +126,7 @@ export class ProfileComponent implements OnInit {
 
     async ngOnInit() {
         this.lstSectores = await this.svrSector.obtenerSectores();
-        this.modeloPersonaTipoUsuario = (await this.svrStorage.loadStorageObject('usuario')) as ModeloTipoUsuarioPersona;
+
         const persona: ModeloPersona = await this.svrPersona.obtenerPersonaPorId(this.modeloPersonaTipoUsuario.persona._id);
         this.setearPersona(this.modeloPersonaTipoUsuario.persona.nombres, this.modeloPersonaTipoUsuario.persona.apellidos,
             this.modeloPersonaTipoUsuario.persona.identificacion, this.modeloPersonaTipoUsuario.persona.fechaNacimiento,

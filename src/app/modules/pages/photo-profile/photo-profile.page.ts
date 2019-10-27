@@ -11,6 +11,7 @@ import {TipoUsuarioPersonaService} from '../../services/persona/tipo-usuario-per
 })
 export class PhotoProfilePage implements OnInit {
     pathFotografia: string;
+    nombreImagen: string;
 
     constructor(private modal: ModalController, private svrStorage: StorageAppService, private svrTipoUsuarioPersona: TipoUsuarioPersonaService) {
     }
@@ -18,6 +19,7 @@ export class PhotoProfilePage implements OnInit {
     async ngOnInit() {
         const tipoUsuarioPersona: ModeloTipoUsuarioPersona = (await this.svrStorage.loadStorageObject('usuario')) as ModeloTipoUsuarioPersona;
         this.pathFotografia = tipoUsuarioPersona._id;
+        this.nombreImagen = tipoUsuarioPersona.imagen;
     }
 
     async guardarFotografia() {
