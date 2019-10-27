@@ -9,7 +9,13 @@ import {NavController} from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
 
+    panelActivo = true;
+
     constructor(private svrStorage: StorageAppService, private navCtrl: NavController) {
+    }
+
+    activarPanel(opcion: boolean) {
+        this.panelActivo = opcion;
     }
 
     salirSesion() {
