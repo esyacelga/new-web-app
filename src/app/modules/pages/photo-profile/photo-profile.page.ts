@@ -22,6 +22,7 @@ export class PhotoProfilePage implements OnInit {
 
     async guardarFotografia() {
         await this.svrTipoUsuarioPersona.actualizarFotografia(this.pathFotografia);
+        this.modal.dismiss();
     }
 
     salirModal() {

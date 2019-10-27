@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import {ImageGeneratorService} from './image-generator.service';
 import {Util} from '../../system/generic/classes/util';
-import {COLOR_TOAST_ERROR} from '../../system/generic/classes/constant';
+import {COLOR_TOAST_PRIMARY, COLOR_TOAST_WARNING} from '../../system/generic/classes/constant';
 
 @Component({
     selector: 'app-image-generator',
@@ -50,9 +50,14 @@ export class ImageGeneratorComponent implements OnInit {
             // @ts-ignore
             const img = window.Ionic.WebView.convertFileSrc(imageData);
             this.imagen = img;
+            if (!img || img === null || img === '') {
+                this.svr.presentToast('No se ha seleccionado imagen: ', COLOR_TOAST_PRIMARY);
+                return;
+            }
+
             this.svrImage.subirImagen(imageData, this.ruta);
         }, (err) => {
-            this.svr.presentToast('Hubo un error al subir la imagen: ' + err, COLOR_TOAST_ERROR);
+            this.svr.presentToast('Imagen no seleccionada', COLOR_TOAST_WARNING );
             // Handle error
         });
     }
