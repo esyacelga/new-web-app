@@ -9,6 +9,8 @@ import {COLOR_TOAST_DARK} from '../../system/generic/classes/constant';
 import {ModeloPersona, ModeloTipoUsuarioPersona, TipoUsuarioPersonaDto} from '../../classes/persona/TipoUsuarioPersona';
 import {StorageAppService} from '../../system/generic/service/storage-app.service';
 import {PersonaService} from '../../services/persona/persona.service';
+import {ModalController} from '@ionic/angular';
+import {PhotoProfilePage} from '../../pages/photo-profile/photo-profile.page';
 
 @Component({
     selector: 'app-profile',
@@ -24,9 +26,19 @@ export class ProfileComponent implements OnInit {
     registoMensajes: RegistroMensajes = new RegistroMensajes();
     error_messages = this.registoMensajes.error_messages;
 
-    constructor(private formFuilder: FormBuilder, private svrSector: SectorService, private svrStorage: StorageAppService,
+    constructor(private formFuilder: FormBuilder, private svrSector: SectorService,
+                private svrStorage: StorageAppService, private modalCtrl: ModalController,
                 private svrTipoUsuario: TipoUsuarioService, private util: Util, private svrPersona: PersonaService) {
         this.construirFormRegistro();
+    }
+
+    async abrirModal() {
+        const modal = await this.modalCtrl.create({
+            component: PhotoProfilePage,
+            componentProps: {title: 's', tipoError: 's', mensaje: 'mensajeError'}
+        });
+        await modal.present();
+        const {data} = await modal.onDidDismiss();
     }
 
     construirFormRegistro() {

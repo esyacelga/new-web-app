@@ -10,6 +10,8 @@ import {PipesModule} from '../pipes/pipes.module';
 import {PedidosComponent} from './pedidos/pedidos.component';
 import {ProfileComponent} from './profile/profile.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PhotoProfilePageModule} from '../pages/photo-profile/photo-profile.module';
+import {PhotoProfilePage} from '../pages/photo-profile/photo-profile.page';
 
 
 @NgModule({
@@ -24,8 +26,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         PipesModule,
         FormsModule,
         IonicModule,
+        PhotoProfilePageModule,
         ReactiveFormsModule,
-    ]
+    ], entryComponents: [PhotoProfilePage]
 })
 export class ComponentModule {
 }
