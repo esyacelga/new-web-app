@@ -92,10 +92,11 @@ export class ProfileComponent implements OnInit {
         };
     }
 
-    registerNewUser() {
+    actualizarPersona() {
         this.tipoUsuarioPersona = this.ingresoForm.value;
+        this.tipoUsuarioPersona._id = this.modeloPersonaTipoUsuario.persona._id;
         if (this.ingresoForm.status === 'VALID') {
-            console.log('success');
+            this.svrPersona.actualizarPersona(this.tipoUsuarioPersona);
         } else {
             this.util.presentToast('Por favor ingrese la información solicitada', COLOR_TOAST_DARK);
         }
@@ -107,16 +108,16 @@ export class ProfileComponent implements OnInit {
         this.modeloPersonaTipoUsuario = (await this.svrStorage.loadStorageObject('usuario')) as ModeloTipoUsuarioPersona;
         const persona: ModeloPersona = await this.svrPersona.obtenerPersonaPorId(this.modeloPersonaTipoUsuario.persona._id);
         this.setearPersona(this.modeloPersonaTipoUsuario.persona.nombres, this.modeloPersonaTipoUsuario.persona.apellidos,
-            this.modeloPersonaTipoUsuario.persona.cedula, this.modeloPersonaTipoUsuario.persona.fechaNacimiento,
+            this.modeloPersonaTipoUsuario.persona.identificacion, this.modeloPersonaTipoUsuario.persona.fechaNacimiento,
             persona.sector, this.modeloPersonaTipoUsuario.usuario.clave, persona.correo);
     }
 
-    setearPersona(nombres: string, apellidos: string, cedula: string, fechaNacimiento, sector: string, clave: string, correo: string) {
+    setearPersona(nombres: string, apellidos: string, identificacion: string, fechaNacimiento, sector: string, clave: string, correo: string) {
         this.ingresoForm.setValue({
             nombres: nombres,
             apellidos: apellidos,
             segundoApellido: '',
-            identificacion: this.util.isNull(cedula, ''),
+            identificacion: this.util.isNull(identificacion, ''),
             fechaNacimiento: fechaNacimiento,
             callePrincipal: '',
             calleSecundaria: '',

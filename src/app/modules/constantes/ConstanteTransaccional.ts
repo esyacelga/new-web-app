@@ -1,4 +1,5 @@
 export const CRUD_SECTOR = 'sector';
+export const CRUD_PERSONA = 'persona';
 export const CRUD_VEHICULO = 'vehiculoRoute';
 export const CRUD_ESTADO_RUTA = 'estadoRutaRoute';
 export const CRUD_DISPONIBILIDAD = 'disponibilidadRoute';

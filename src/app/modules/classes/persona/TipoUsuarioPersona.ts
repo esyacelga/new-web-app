@@ -35,7 +35,7 @@ export class ModeloPersona {
     nombres: string = '';
     apellidos: string = '';
     fechaNacimiento: Date;
-    cedula: string = '';
+    identificacion: string = '';
     correo: string = '';
     sector: string = '';
     avatar: string = '';

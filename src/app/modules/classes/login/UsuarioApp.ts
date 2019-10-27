@@ -2,7 +2,7 @@ export class UsuarioApp {
     public idUsuarioApp;
     public nombres: string;
     public apellidos: string;
-    public cedula: string;
+    public identificacion: string;
     public clave: string;
     public correo: string;
     public validadorClave: string;
