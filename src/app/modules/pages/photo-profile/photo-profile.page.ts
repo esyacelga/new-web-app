@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ModalController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-photo-profile',
-  templateUrl: './photo-profile.page.html',
-  styleUrls: ['./photo-profile.page.scss'],
+    selector: 'app-photo-profile',
+    templateUrl: './photo-profile.page.html',
+    styleUrls: ['./photo-profile.page.scss'],
 })
 export class PhotoProfilePage implements OnInit {
 
-  constructor() { }
+    constructor(private modal: ModalController) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
+    salirModal() {
+        this.modal.dismiss();
+    }
 }

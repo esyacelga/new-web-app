@@ -1,0 +1,32 @@
+<ion-row>
+    <ion-col size="12" *ngIf="imagen">
+        <ion-card>
+            <img [src]="imagen | imageSanitizer">
+        </ion-card>
+    </ion-col>
+
+    <ion-col size="12" *ngIf="!imagen">
+        <ion-card>
+            <img src="/assets/img/pre-imagen.png">
+        </ion-card>
+    </ion-col>
+
+    <ion-col size="6">
+        <ion-button expand="full"
+                    ion-button
+                    (click)="camara()"
+                    shape="round">
+            <ion-icon slot="start" name="camera"></ion-icon>
+            Cámara
+        </ion-button>
+    </ion-col>
+    <ion-col size="6">
+        <ion-button expand="full"
+                    ion-button
+                    (click)="libreria()"
+                    shape="round">
+            <ion-icon slot="start" name="images"></ion-icon>
+            Galería
+        </ion-button>
+    </ion-col>
+</ion-row>
