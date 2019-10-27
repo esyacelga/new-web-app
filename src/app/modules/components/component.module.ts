@@ -8,17 +8,23 @@ import {ItemSeleccionadoComponent} from './item-seleccionado/item-seleccionado.c
 import {ArticuloSlideComponent} from './articulo-slide/articulo-slide.component';
 import {PipesModule} from '../pipes/pipes.module';
 import {PedidosComponent} from './pedidos/pedidos.component';
+import {ProfileComponent} from './profile/profile.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-    declarations: [AvatarSelectorComponent, MapaComponent, CardImageComponent, ItemSeleccionadoComponent, ArticuloSlideComponent, PedidosComponent],
+    declarations: [AvatarSelectorComponent, MapaComponent, ProfileComponent,
+        CardImageComponent, ItemSeleccionadoComponent, ArticuloSlideComponent, PedidosComponent],
     exports: [
-        AvatarSelectorComponent, MapaComponent, CardImageComponent, ItemSeleccionadoComponent, ArticuloSlideComponent, PedidosComponent
+        AvatarSelectorComponent, MapaComponent, ProfileComponent,
+        CardImageComponent, ItemSeleccionadoComponent, ArticuloSlideComponent, PedidosComponent
     ],
     imports: [
         CommonModule,
+        PipesModule,
+        FormsModule,
         IonicModule,
-        PipesModule
+        ReactiveFormsModule,
     ]
 })
 export class ComponentModule {

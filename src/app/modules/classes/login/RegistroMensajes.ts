@@ -14,6 +14,11 @@ export class RegistroMensajes {
             {type: 'maxlength', message: 'Debe ser menor o igual a 30 caracteres'}
 
         ],
+        'cedula': [
+            {type: 'minlength', message: 'Debe ser mayor o igual a 9 caracteres'},
+            {type: 'maxlength', message: 'Debe ser menor o igual a 10 caracteres'}
+
+        ],
         'passwordValidator': [
             {type: 'required', message: 'La validación del password es requrido'},
             {type: 'minlength', message: 'Debe ser mayor o igual a 6 caracteres'},

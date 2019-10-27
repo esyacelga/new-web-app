@@ -21,6 +21,13 @@ export class Util {
 
     }
 
+    public isNull(value, ifnull) {
+        if (value === null || value === undefined) {
+            return ifnull;
+        }
+        return value;
+    }
+
 
     public buscarObjetoPorCampo(lista: [], campo: string, valor: string) {
         let obj;
@@ -38,7 +45,6 @@ export class Util {
         }
         return obj;
     }
-
 
 
     public async presentToast(mensaje, color) {
