@@ -2,7 +2,11 @@ import {Injectable} from '@angular/core';
 import {ExecuteCallProcedureService} from '../../system/generic/service/execute-call-procedure.service';
 import {ModeloTipoUsuarioPersona, TipoUsuarioPersona, TipoUsuarioPersonaDto} from '../../classes/persona/TipoUsuarioPersona';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
-import {CRUD_TIPO_USUARIO_PERSONA, CRUD_TIPO_USUARIO_PERSONA_INSERTAR} from '../../constantes/ConstanteTransaccional';
+import {
+    CRUD_TIPO_USUARIO_PERSONA,
+    CRUD_TIPO_USUARIO_PERSONA_ACTUALIZAR_FOTO,
+    CRUD_TIPO_USUARIO_PERSONA_INSERTAR
+} from '../../constantes/ConstanteTransaccional';
 import {Sector} from '../../classes/persona/Sector';
 import {
     OBTENER_TODOS_PERSONA_TIPO_USUARIO,
@@ -76,6 +80,11 @@ export class TipoUsuarioPersonaService {
     async insertar(tipoUsuarioPersona: TipoUsuarioPersona) {
         const requestOptions = new RequestOptions();
         return await this.genericService.servicioRestGenericoPost(tipoUsuarioPersona, CRUD_TIPO_USUARIO_PERSONA_INSERTAR, requestOptions) as Sector;
+    }
+
+    async actualizarFotografia(idTipoUsuarioPersona) {
+        const requestOptions = new RequestOptions();
+        return await this.genericService.servicioRestGenericoPost({_id: idTipoUsuarioPersona}, CRUD_TIPO_USUARIO_PERSONA_ACTUALIZAR_FOTO, requestOptions) as Sector;
     }
 
 

@@ -1,4 +1,5 @@
 <ion-row>
+    Esta es la ruta: {{ruta}}
     <ion-col size="12" *ngIf="imagen">
         <ion-card>
             <img [src]="imagen | imageSanitizer">
@@ -10,23 +11,20 @@
             <img src="/assets/img/pre-imagen.png">
         </ion-card>
     </ion-col>
-
-    <ion-col size="6">
-        <ion-button expand="full"
-                    ion-button
-                    (click)="camara()"
-                    shape="round">
-            <ion-icon slot="start" name="camera"></ion-icon>
-            Cámara
-        </ion-button>
-    </ion-col>
-    <ion-col size="6">
-        <ion-button expand="full"
-                    ion-button
-                    (click)="libreria()"
-                    shape="round">
-            <ion-icon slot="start" name="images"></ion-icon>
-            Galería
-        </ion-button>
-    </ion-col>
 </ion-row>
+<ion-button
+        type="submit"
+        (click)="camara()"
+        color="tertiary"
+        expand="block">Tomar Foto
+    <ion-icon slot="start" name="camera"></ion-icon>
+</ion-button>
+
+<ion-button
+        type="submit"
+        (click)="libreria()"
+        color="tertiary"
+        expand="block">Seleccionar Imagen
+    <ion-icon slot="start" name="images"></ion-icon>
+</ion-button>
+

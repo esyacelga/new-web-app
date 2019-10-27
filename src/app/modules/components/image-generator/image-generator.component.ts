@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import {ImageGeneratorService} from './image-generator.service';
-import {ModeloTipoUsuarioPersona} from '../../classes/persona/TipoUsuarioPersona';
-import {StorageAppService} from '../../system/generic/service/storage-app.service';
+import {Util} from '../../system/generic/classes/util';
+import {COLOR_TOAST_ERROR} from '../../system/generic/classes/constant';
 
 @Component({
     selector: 'app-image-generator',
@@ -10,10 +10,10 @@ import {StorageAppService} from '../../system/generic/service/storage-app.servic
     styleUrls: ['./image-generator.component.scss'],
 })
 export class ImageGeneratorComponent implements OnInit {
+    @Input() ruta: string;
     imagen: string;
 
-    constructor(private camera: Camera, private svrStorage: StorageAppService,
-                private svrImage: ImageGeneratorService) {
+    constructor(private camera: Camera, private svrImage: ImageGeneratorService, private svr: Util) {
     }
 
     ngOnInit() {
@@ -46,13 +46,13 @@ export class ImageGeneratorComponent implements OnInit {
 
     async procesarImagen(options: CameraOptions) {
         console.error('Revisar Foto');
-        const tipoUsuarioPersona: ModeloTipoUsuarioPersona = (await this.svrStorage.loadStorageObject('usuario')) as ModeloTipoUsuarioPersona;
         this.camera.getPicture(options).then((imageData) => {
             // @ts-ignore
             const img = window.Ionic.WebView.convertFileSrc(imageData);
             this.imagen = img;
-            this.svrImage.subirImagen(imageData, tipoUsuarioPersona._id);
+            this.svrImage.subirImagen(imageData, this.ruta);
         }, (err) => {
+            this.svr.presentToast('Hubo un error al subir la imagen: ' + err, COLOR_TOAST_ERROR);
             // Handle error
         });
     }
