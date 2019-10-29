@@ -14,7 +14,7 @@ import {TipoUsuarioService} from '../../services/persona/tipo-usuario.service';
 import {Util} from '../../system/generic/classes/util';
 import {COLOR_TOAST_WARNING} from '../../system/generic/classes/constant';
 import {PushNotificationService} from '../../system/generic/service/push-notification.service';
-import {ModeloTipoUsuarioPersona} from '../../classes/persona/TipoUsuarioPersona';
+import {ModeloTipoUsuarioPersona, ModeloUsuario} from '../../classes/persona/TipoUsuarioPersona';
 import {Router} from '@angular/router';
 
 @Component({
@@ -149,6 +149,8 @@ export class LoginPage implements OnInit {
         }
         const data: ModeloTipoUsuarioPersona[] = (await this.svrUsuario.loginUsuario(this.ingresoForm.value.correo, this.ingresoForm.value.clave)) as ModeloTipoUsuarioPersona[];
         if (data && data.length > 0) {
+            const objUsuario: ModeloUsuario = data[0].usuario;
+            await this.svrUsuario.actualizarPlayerId(objUsuario);
             if (data.length === 1) {
                 this.navCtrl.navigateRoot('/main/tabs/tab1', {animated: true});
                 if (this.platform.is('cordova')) {

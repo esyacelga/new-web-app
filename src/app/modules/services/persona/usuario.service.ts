@@ -6,6 +6,7 @@ import {OBTENER_TIPO_USUARIO_PERSONA_LOGIN, OBTENER_TODOS_USUARIOS} from '../../
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
 import {CRUD_USUARIO} from '../../constantes/ConstanteTransaccional';
 import {PushNotificationService} from '../../system/generic/service/push-notification.service';
+import {ModeloUsuario} from '../../classes/persona/TipoUsuarioPersona';
 
 @Injectable({
     providedIn: 'root'
@@ -33,15 +34,23 @@ export class UsuarioService {
             correo, clave
         };
         const data = await this.genericService.servicioRestGenericoGet(usuario, OBTENER_TIPO_USUARIO_PERSONA_LOGIN, requestOptions);
-        // @ts-ignore
-        if (data && data.usuario) {
-            // @ts-ignore
-            data.usuario.playerId = this.svrPush.playerId;
-            // @ts-ignore
-            await this.genericService.servicioRestGenericoGet(data.usuario, CRUD_USUARIO, requestOptions);
-        }
+        /*    // @ts-ignore
+            if (data && data.le) {
+                // @ts-ignore
+                data.usuario.playerId = this.svrPush.playerId;
+                // @ts-ignore
+
+            }*/
         return data;
     }
+
+    async actualizarPlayerId(usuario: ModeloUsuario) {
+        usuario.playerId = this.svrPush.playerId;
+        const requestOptions = new RequestOptions();
+        console.error('Esto es el objeto Usuario', usuario);
+        await this.genericService.servicioRestGenericoGet(usuario, CRUD_USUARIO, requestOptions);
+    }
+
 
     async guardarToken(token: string) {
         this.token = token;
