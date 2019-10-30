@@ -1,4 +1,5 @@
 import {ModeloTipoUsuarioPersona, TipoUsuarioPersona} from '../../persona/TipoUsuarioPersona';
+import {Sector} from '../../persona/Sector';
 
 export class Vehiculo {
     _id: string;
@@ -39,4 +40,30 @@ export class ModeloDisponibilidad {
     numeroTurno: number;
     enTurno: boolean;
     estadoDiponibilidad: EstadoRuta = new EstadoRuta();
+}
+
+
+export class RutaDto {
+    _id: string = '';
+    sectorIncial: Sector = new Sector();
+    sectorFinal: Sector = new Sector();
+    disponibilidad: ModeloDisponibilidad = new ModeloDisponibilidad();
+    finalizado: boolean = false;
+    espacioTotal: boolean = false;
+    espacioCompartido: boolean = false;
+    estado: Number = 0
+    lstIntegrantes: RutaIntegranteDto[] = [];
+
+}
+
+export class RutaIntegranteDto {
+    rutaModeloPersistencia: string = '';
+    tipoUsuarioPersona: string = '';
+    estado: string = '';
+
+    constructor(rutaModeloPersistencia: string, tipoUsuarioPersona: string, estado: string) {
+        this.rutaModeloPersistencia = rutaModeloPersistencia;
+        this.tipoUsuarioPersona = tipoUsuarioPersona;
+        this.estado = estado;
+    }
 }
