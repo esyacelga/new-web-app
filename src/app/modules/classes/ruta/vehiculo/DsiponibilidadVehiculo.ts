@@ -51,17 +51,26 @@ export class RutaDto {
     finalizado: boolean = false;
     espacioTotal: boolean = false;
     espacioCompartido: boolean = false;
-    estado: Number = 0
+    estado: Number = 0;
     lstIntegrantes: RutaIntegranteDto[] = [];
 
+
+    constructor( disponibilidad: ModeloDisponibilidad, finalizado: boolean, espacioTotal: boolean, espacioCompartido: boolean, estado: Number, lstIntegrantes: RutaIntegranteDto[]) {
+        this.disponibilidad = disponibilidad;
+        this.finalizado = finalizado;
+        this.espacioTotal = espacioTotal;
+        this.espacioCompartido = espacioCompartido;
+        this.estado = estado;
+        this.lstIntegrantes = lstIntegrantes;
+    }
 }
 
 export class RutaIntegranteDto {
     rutaModeloPersistencia: string = '';
     tipoUsuarioPersona: string = '';
-    estado: string = '';
+    estado: number = 0;
 
-    constructor(rutaModeloPersistencia: string, tipoUsuarioPersona: string, estado: string) {
+    constructor(rutaModeloPersistencia: string, tipoUsuarioPersona: string, estado: number) {
         this.rutaModeloPersistencia = rutaModeloPersistencia;
         this.tipoUsuarioPersona = tipoUsuarioPersona;
         this.estado = estado;

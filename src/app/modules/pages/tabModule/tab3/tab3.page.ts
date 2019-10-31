@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UnidadDisponibilidaddadService} from '../../../services/ruta/unidad-disponibilidaddad.service';
-import {Disponibilidad, ModeloDisponibilidad} from '../../../classes/ruta/vehiculo/DsiponibilidadVehiculo';
+import {ModeloDisponibilidad} from '../../../classes/ruta/vehiculo/DsiponibilidadVehiculo';
 
 @Component({
     selector: 'app-tab3',
@@ -9,6 +9,7 @@ import {Disponibilidad, ModeloDisponibilidad} from '../../../classes/ruta/vehicu
 })
 export class Tab3Page implements OnInit {
     lstUnidadDisponible: ModeloDisponibilidad[];
+    objDisponibilidad: ModeloDisponibilidad;
 
     constructor(private svrDisponibilidad: UnidadDisponibilidaddadService) {
     }
