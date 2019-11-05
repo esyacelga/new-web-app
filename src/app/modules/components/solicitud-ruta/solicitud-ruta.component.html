@@ -10,13 +10,38 @@
                 Chofer: {{' ' + modeloDisponibilidad.tipoUsuarioPersona.persona.apellidos + ' ' + modeloDisponibilidad.tipoUsuarioPersona.persona.nombres}}</ion-card-subtitle>
             <ion-button (click)="solicitudServicio()" expand="full">Solcitar</ion-button>
         </ion-card-header>
+
+
     </ion-card>
-  <!--  <ion-card>
-        <ion-item color="dark" class="activated">
-            <ion-icon name="wifi" slot="start"></ion-icon>
-            <ion-label>Solictar Vehiculo</ion-label>
+
+    <ion-list *ngIf="lstIntegrantes && lstIntegrantes.length>0">
+        <ion-list-header>
+            <ion-item color="dark">
+                <ion-label>Personas Actuales</ion-label>
+            </ion-item>
+        </ion-list-header>
+        <ion-item color="dark" *ngFor="let item of lstIntegrantes">
+            <ion-avatar slot="start">
+                <img *ngIf="item.imagen" class="user-avatar"
+                     [src]="(item.imagen | imagen: item._id )|urlSanitizer">
+                <img *ngIf="!item.imagen"
+                     src="/assets/avatars/{{ item.persona.avatar }}">
+            </ion-avatar>
+            <ion-label>
+                <h2>{{item.persona.apellidos}}{{' '}}{{item.persona.nombres}}</h2>
+                <!--<h3>Valor Total: {{' '}}{{item.total.toFixed(2)}}</h3>
+                <p> # {{' '}}{{item.pedido._id}}</p>-->
+            </ion-label>
         </ion-item>
-    </ion-card>-->
+    </ion-list>
+
+
+    <!--  <ion-card>
+          <ion-item color="dark" class="activated">
+              <ion-icon name="wifi" slot="start"></ion-icon>
+              <ion-label>Solictar Vehiculo</ion-label>
+          </ion-item>
+      </ion-card>-->
 </ion-app>
 <!--
 <ion-card>

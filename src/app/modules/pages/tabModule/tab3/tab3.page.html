@@ -1,6 +1,6 @@
 <ion-content color="dark">
 
-    <app-solicitud-ruta [modeloDisponibilidad]="objDisponibilidad"></app-solicitud-ruta>
+    <app-solicitud-ruta *ngIf="objDisponibilidad" [modeloDisponibilidad]="objDisponibilidad"></app-solicitud-ruta>
     <ion-list [hidden]="objDisponibilidad" *ngFor="let item of lstUnidadDisponible">
         <ion-item (click)="objDisponibilidad= item" color="dark">
             <ion-avatar slot="start">

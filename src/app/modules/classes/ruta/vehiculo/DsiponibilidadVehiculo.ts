@@ -1,4 +1,4 @@
-import {ModeloTipoUsuarioPersona, TipoUsuarioPersona} from '../../persona/TipoUsuarioPersona';
+import {ModeloPersona, ModeloTipoUsuarioPersona, TipoUsuarioPersona} from '../../persona/TipoUsuarioPersona';
 import {Sector} from '../../persona/Sector';
 
 export class Vehiculo {
@@ -55,7 +55,7 @@ export class RutaDto {
     lstIntegrantes: RutaIntegranteDto[] = [];
 
 
-    constructor( disponibilidad: ModeloDisponibilidad, finalizado: boolean, espacioTotal: boolean, espacioCompartido: boolean, estado: Number, lstIntegrantes: RutaIntegranteDto[]) {
+    constructor(disponibilidad: ModeloDisponibilidad, finalizado: boolean, espacioTotal: boolean, espacioCompartido: boolean, estado: Number, lstIntegrantes: RutaIntegranteDto[]) {
         this.disponibilidad = disponibilidad;
         this.finalizado = finalizado;
         this.espacioTotal = espacioTotal;
@@ -75,4 +75,15 @@ export class RutaIntegranteDto {
         this.tipoUsuarioPersona = tipoUsuarioPersona;
         this.estado = estado;
     }
+}
+
+/**
+ * Clase generada para la obtencion de intgrantes de un vehiulo disponible
+ */
+export class IntegranteRuta {
+    estado: number = null;
+    _id: string = null;
+    persona: ModeloPersona = new ModeloPersona();
+    imagen: string;
+
 }
