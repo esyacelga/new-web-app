@@ -1,17 +1,24 @@
 <ion-app *ngIf="modeloDisponibilidad">
     <ion-card>
-        <img *ngIf="modeloDisponibilidad.tipoUsuarioPersona.imagen" class="user-avatar"
-             [src]="(modeloDisponibilidad.tipoUsuarioPersona.imagen | imagen: modeloDisponibilidad.tipoUsuarioPersona._id )|urlSanitizer">
-        <ion-card-header>
-            <ion-card-subtitle>Unidad: {{' ' + modeloDisponibilidad.nombreAlias}}</ion-card-subtitle>
-            <ion-card-subtitle>Placa: {{' ' + modeloDisponibilidad.vehiculo.tipo}}</ion-card-subtitle>
-            <ion-card-subtitle>Placa: {{' ' + modeloDisponibilidad.vehiculo.placa}}</ion-card-subtitle>
-            <ion-card-subtitle>
-                Chofer: {{' ' + modeloDisponibilidad.tipoUsuarioPersona.persona.apellidos + ' ' + modeloDisponibilidad.tipoUsuarioPersona.persona.nombres}}</ion-card-subtitle>
-            <ion-button (click)="solicitudServicio()" expand="full">Solcitar</ion-button>
-        </ion-card-header>
+        <ion-item color="dark">
+            <ion-thumbnail slot="start">
+                <img *ngIf="!modeloDisponibilidad.tipoUsuarioPersona.imagen"
+                     src="/assets/avatars/{{ modeloDisponibilidad.tipoUsuarioPersona.persona.avatar }}">
+                <img *ngIf="modeloDisponibilidad.tipoUsuarioPersona.imagen"
+                     class="user-avatar"
+                     [src]="(modeloDisponibilidad.tipoUsuarioPersona.imagen |
+             imagen: modeloDisponibilidad.tipoUsuarioPersona._id )|urlSanitizer">
+            </ion-thumbnail>
 
-
+            <ion-label>
+                <h2>Unidad: {{' ' + modeloDisponibilidad.nombreAlias + ' '}}
+                    Placa: {{' ' + modeloDisponibilidad.vehiculo.placa}}</h2>
+                <h3>Tipo: {{' ' + modeloDisponibilidad.vehiculo.tipo}}</h3>
+                <p> Chofer: {{' ' + modeloDisponibilidad.tipoUsuarioPersona.persona.apellidos + ' '
+                + modeloDisponibilidad.tipoUsuarioPersona.persona.nombres}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-button (click)="solicitudServicio()" expand="full">Solcitar</ion-button>
     </ion-card>
 
     <ion-list *ngIf="lstIntegrantes && lstIntegrantes.length>0">
