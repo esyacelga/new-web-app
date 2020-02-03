@@ -20,6 +20,7 @@ import {ImageObject} from '../classes/ImageObject';
     providedIn: 'root'
 })
 export class ExecuteCallProcedureService {
+    mostrarMensaje: boolean = false;
 
     constructor(private utilService: Util,
                 private notify: ToastController,
@@ -160,18 +161,40 @@ export class ExecuteCallProcedureService {
                 }
                 resolve(obj);
             }, async error => {
+                const mensaje = this.errorToMessage(error, urlRestService);
+                if (mensaje) {
+                    await this.loading.dismiss('messagesService.loadMessagesOverview');
+                    this.presentToast(mensaje, COLOR_TOAST_ERROR);
+                }
+/*
                 if (options.mostrar === 1) {
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
                 }
-                console.log(error);
-                console.log(urlRestService);
                 if (options.mostrar === 1) {
                     this.presentToast(options.errorMessage, COLOR_TOAST_ERROR);
                 }
+*/
                 reject(error);
             });
         });
         return promesa;
+    }
+
+    public errorToMessage(error, nombreRest) {
+        let tituloError = 'Ha ocurrido un error: ';
+        let detalleError = 'Log: ' + nombreRest;
+        if (error.error) {
+            if (error.error.message) {
+                tituloError = tituloError + error.error.message;
+            }
+        }
+        tituloError = '<p>' + tituloError + '</p>';
+        detalleError = this.lectorError(error.error.errors.errors);
+        if (this.mostrarMensaje === true) {
+            return tituloError + ' </br> ' + detalleError;
+        } else {
+            return detalleError;
+        }
     }
 
 
@@ -180,7 +203,10 @@ export class ExecuteCallProcedureService {
         for (const aProperty in objError) {
             if (objError.hasOwnProperty(aProperty)) {
                 const data = objError[aProperty];
-                mensajes = '<p>' + data.message + '</p></br>' + mensajes;
+                mensajes = data.message;
+                if (data.mostrarDetalle) {
+                    this.mostrarMensaje = data.mostrarDetalle;
+                }
             }
         }
         return mensajes;
@@ -240,7 +266,7 @@ export class ExecuteCallProcedureService {
                         obj = resp.objeto;
                     }
                     resolve(obj);
-                    }, async error => {
+                }, async error => {
                     const mensaje = this.lectorError(error.error.errors.errors);
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
                     if (error && error.errors && error.errors.errors && mensaje === '') {

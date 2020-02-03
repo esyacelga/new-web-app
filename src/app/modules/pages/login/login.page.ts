@@ -145,6 +145,7 @@ export class LoginPage implements OnInit {
 
     async login() {
         if (this.ingresoForm.status === 'INVALID') {
+            this.util.presentToast('Debe ingresar la información solicitada, (Usuario, Contraseña ).', COLOR_TOAST_WARNING);
             return;
         }
         const data: ModeloTipoUsuarioPersona[] = (await this.svrUsuario.loginUsuario(this.ingresoForm.value.correo, this.ingresoForm.value.clave)) as ModeloTipoUsuarioPersona[];
