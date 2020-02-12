@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ExecuteCallProcedureService} from '../../system/generic/service/execute-call-procedure.service';
 import {IntegranteRuta, RutaDto} from '../../classes/ruta/vehiculo/DsiponibilidadVehiculo';
 import {RequestOptions} from '../../system/generic/classes/RequestOptions';
-import {CRUD_RUTA} from '../../constantes/ConstanteTransaccional';
+import {CRUD_RUTA, CRUD_RUTA_SIMPLE} from '../../constantes/ConstanteTransaccional';
 import {OBTENER_TODOS_RUTA_DISPONIBILIDAD, OBTENER_TODOS_VEHICULO} from '../../constantes/ConstanteConsulta';
 import {TipoUsuarioPersonaService} from '../persona/tipo-usuario-persona.service';
 
@@ -20,6 +20,10 @@ export class VehiculoRutaService {
         return await this.genericService.servicioRestGenericoPost(ruta, CRUD_RUTA, requestOptions) as RutaDto;
     }
 
+    async registrarSolicitud(ruta: RutaDto) {
+        const requestOptions = new RequestOptions();
+        return await this.genericService.servicioRestGenericoPost(ruta, CRUD_RUTA_SIMPLE, requestOptions) as RutaDto;
+    }
 
     async obtenerTodos() {
         const requestOptions = new RequestOptions();

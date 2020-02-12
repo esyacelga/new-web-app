@@ -15,15 +15,14 @@ export class SolicitudRutaComponent implements OnInit {
 
     lstIntegrantes: IntegranteRuta[] = [];
 
-    constructor(private svrRuta: VehiculoRutaService, private svrStorage: StorageAppService,) {
+    constructor(private svrRuta: VehiculoRutaService, private svrStorage: StorageAppService) {
 
     }
 
-     async ngOnInit() {
-         this.lstIntegrantes = await this.svrRuta.obtenerIntegrantesPorDisponibilidad(this.modeloDisponibilidad._id);
-         console.log(this.lstIntegrantes);
-     }
-
+    async ngOnInit() {
+        this.lstIntegrantes = await this.svrRuta.obtenerIntegrantesPorDisponibilidad(this.modeloDisponibilidad._id);
+        console.log(this.lstIntegrantes);
+    }
 
 
     async solicitudServicio() {
@@ -32,7 +31,8 @@ export class SolicitudRutaComponent implements OnInit {
         const objRutaIntegrante = new RutaIntegranteDto(null, usuarioActual._id, 1);
         lstIntegrantes.push(objRutaIntegrante);
         const objRuta: RutaDto = new RutaDto(this.modeloDisponibilidad, false, false, false, 1, lstIntegrantes);
-        this.svrRuta.registar(objRuta);
+        await this.svrRuta.registar(objRuta);
+        this.lstIntegrantes = await this.svrRuta.obtenerIntegrantesPorDisponibilidad(this.modeloDisponibilidad._id);
     }
 
 
