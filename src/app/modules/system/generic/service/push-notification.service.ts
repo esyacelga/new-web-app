@@ -65,7 +65,7 @@ export class PushNotificationService {
     }
 
     configuracionInicial() {
-        this.oneSignal.startInit('207a69ab-4d96-44f8-a6ce-828f0eb13cf3', '872578811835');
+        this.oneSignal.startInit('7aefa706-f4b4-47cf-9c8f-7f1d9830fcda', '872578811835');
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
         this.oneSignal.handleNotificationReceived().subscribe((noti) => {
             // do something when notification is received

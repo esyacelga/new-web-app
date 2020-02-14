@@ -41,7 +41,6 @@ export class AppComponent {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
             if (this.platform.is('cordova')) {
-                console.log('Entrando a Notificaciion');
                 this.svtNotificacion.configuracionInicial();
             }
         });
