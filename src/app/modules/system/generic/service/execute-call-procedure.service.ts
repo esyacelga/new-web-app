@@ -248,7 +248,7 @@ export class ExecuteCallProcedureService {
                     const mensaje = this.lectorError(httpError.error.errors.errors);
                     await this.loading.dismiss('messagesService.loadMessagesOverview');
                     if (httpError !== undefined && httpError.error !== undefined && httpError.error.errors !== undefined && mensaje === '') {
-                        this.presentToast(httpError.error.errors.error, COLOR_TOAST_ERROR);
+                        this.presentToast(httpError.error.errors.message, COLOR_TOAST_ERROR);
                     } else {
                         this.presentToast(mensaje, COLOR_TOAST_ERROR);
                     }

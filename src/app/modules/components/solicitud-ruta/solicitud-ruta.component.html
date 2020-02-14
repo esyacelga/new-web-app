@@ -18,29 +18,26 @@
                 + modeloDisponibilidad.tipoUsuarioPersona.persona.nombres}}</p>
             </ion-label>
         </ion-item>
-        <ion-button (click)="solicitudServicio()" expand="full">Solcitar</ion-button>
+        <ion-list *ngIf="lstIntegrantes && lstIntegrantes.length>0">
+            <ion-item color="dark" *ngFor="let item of lstIntegrantes; let i = index">
+                <ion-avatar slot="start">
+                    <img *ngIf="item.imagen" class="user-avatar"
+                         [src]="(item.imagen | imagen: item._id )|urlSanitizer">
+                    <img *ngIf="!item.imagen"
+                         src="/assets/avatars/{{ item.persona.avatar }}">
+                </ion-avatar>
+                <ion-label>
+                    <h2>Usuario/Pasajero</h2>
+                    <h3> {{item.persona.apellidos}}{{' '}}{{item.persona.nombres}}</h3>
+                    <!--<h3>Valor Total: {{' '}}{{item.total.toFixed(2)}}</h3>
+                    <p> # {{' '}}{{item.pedido._id}}</p>-->
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-button (click)="solicitudServicio()" expand="full">Deseo unirme</ion-button>
     </ion-card>
 
-    <ion-list *ngIf="lstIntegrantes && lstIntegrantes.length>0">
-        <ion-list-header>
-            <ion-item color="dark">
-                <ion-label>Personas Actuales</ion-label>
-            </ion-item>
-        </ion-list-header>
-        <ion-item color="dark" *ngFor="let item of lstIntegrantes">
-            <ion-avatar slot="start">
-                <img *ngIf="item.imagen" class="user-avatar"
-                     [src]="(item.imagen | imagen: item._id )|urlSanitizer">
-                <img *ngIf="!item.imagen"
-                     src="/assets/avatars/{{ item.persona.avatar }}">
-            </ion-avatar>
-            <ion-label>
-                <h2>{{item.persona.apellidos}}{{' '}}{{item.persona.nombres}}</h2>
-                <!--<h3>Valor Total: {{' '}}{{item.total.toFixed(2)}}</h3>
-                <p> # {{' '}}{{item.pedido._id}}</p>-->
-            </ion-label>
-        </ion-item>
-    </ion-list>
+
 
 
     <!--  <ion-card>
